@@ -1,0 +1,94 @@
+* {
+ font-family: "Helvetica Neue", Arial, sans-serif;
+ color: #1C1C1C;
+}
+.title {
+  font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
+  font-size: 40px;
+}
+.name {
+ line-height: .95;
+ font-style: italic;
+ text-align: left;
+ font-size: 50px;
+ font-weight: bold;
+ padding-bottom: 20px;
+ color: #141414;
+}
+ul {
+  margin: 0px;
+  list-style-type: none;
+}
+.page_title {
+ color: #BC0004;
+}
+.post_date {
+  font-style: italic;
+  padding-left: 20px;
+  color: #999;
+}
+.posts {
+  font-size: 30px;
+}
+.pronuc {
+ float: right;
+ font-weight: normal;
+ color: #999;
+ font-size: 16px;
+}
+.extra {
+ margin-left: 6px;
+ float: right;
+ font-size: 16px;
+}
+.info {
+ font-style: italic;
+ text-align: justify; 
+ font-size: 26px;
+}
+.definition {
+ text-align: justify;
+ font-weight: bold;
+ font-size: 34px;
+}
+.date {
+  color: #545454;
+}
+#links {
+ text-align: right;
+ border-bottom: 3px solid #3C3C3C;
+ padding-bottom: 10px;
+}
+#main {
+ width: 715px;
+ text-align: left;
+ margin: 75px auto;
+}
+.even {
+ color: #969696;
+}
+.odd {
+ color: #545454;
+}
+a {
+ padding: .1em .2em;
+ text-decoration: none;
+}
+a:hover {
+ background: #BC0004;
+ color: #FFF;
+ text-decoration: none;
+}
+.github {
+ float: right;
+}
+.github img {
+ border: none;
+ margin-top: 4px;
+}
+.github:hover {
+ background: none;
+}
+#dialog {
+ font-size: 10px;
+}
