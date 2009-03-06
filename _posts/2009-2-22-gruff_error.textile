@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Gruff Error: Magick::ImageMagickError: unable to read font'
+title: 'Gruff Error: Magick::ImageMagickError: unable font'
 ---
 
 Ahhh this took forever to figure out…

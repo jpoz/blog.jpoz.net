@@ -23,12 +23,13 @@ ul {
  color: #BC0004;
 }
 .post_date {
+  font-size: 14px;
   font-style: italic;
-  padding-left: 20px;
+  padding-left: 16px;
   color: #999;
 }
 .posts {
-  font-size: 30px;
+  font-size: 24px;
 }
 .pronuc {
  float: right;
@@ -60,7 +61,7 @@ ul {
  padding-bottom: 10px;
 }
 #main {
- width: 715px;
+ width: 735px;
  text-align: left;
  margin: 75px auto;
 }
