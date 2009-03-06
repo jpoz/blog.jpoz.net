@@ -7,8 +7,6 @@ Ahhh this took forever to figure out…
 
 First find out which fonts you can use:
 
-Code used for beachmarking:
-
 {% highlight bash %}
 jpoz$ identify -list font
 {% endhighlight %}

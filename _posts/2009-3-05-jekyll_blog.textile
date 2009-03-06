@@ -1,0 +1,14 @@
+---
+layout: post
+title: 'Creating the purrdy Jekyll blog'
+---
+
+Creating a Jekyll blog is both fun and easy. I was amazed how easy it was to get started and get something up and running in a couple minutes!
+
+To get started you'll want to download jekyll and all it's components at: "github.com/mojombo/jekyll":http://github.com/mojombo/jekyll/tree/master
+
+First find out which fonts you can use:
+
+{% highlight bash %}
+jpoz$ identify -list font
+{% endhighlight %}
