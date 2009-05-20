@@ -1,0 +1,24 @@
+---
+layout: post
+title: 'MacRuby and HotCocoa'
+---
+
+h2. MacRuby
+
+For someone like me, who has been tinkering around with Objective-C, "MacRuby":http://macruby.org/ is awesome. MacRuby is Ruby 1.9 ported to directly interface with core Mac OS X technologies. What does that mean? Well lets say you make the string "Bob" with MacRuby. "Bob".class would return NSMutableString. Meaning you just created a core Objective-C object directly with Ruby.
+
+HotCocoa is a bunch of Ruby mappings to Cocoa classes. Think of it like Ruby short hand to make Cocoa classes. It makes creating a simple application easy as 1 2 3.
+
+1. win = window
+2. b   = button
+3. win << b
+
+Run that code in macirb or HotConsole
+
+h2. HotCocoa
+
+
+h3.
+
+
+
