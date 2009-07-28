@@ -3,7 +3,7 @@ layout: post
 title: Apple Push Notification Service Gem
 ---
 
-p. Woo hoo I've written my first gem! Over the last couple of months I've been playing around with Apple's new <strong>A</strong>pple <strong>P</strong>ush <strong>N</strong>otification <strong>S</strong>ervice (*APNS*). I've written up a little gem to incapsulate the main functionality of APNS. I named it APNS for obvious reason and put up the "code":http://github.com/jpoz/APNS/ on github. It's easy to install using github's gem server:
+p. Woo hoo I've written my first gem! Over the last couple of months I've been playing around with Apple's new <strong>A</strong>pple <strong>P</strong>ush <strong>N</strong>otification <strong>S</strong>ervice (*APNS*). I've written up a little gem to incapsulate the main functionality of APNS. I named it APNS for obvious reasons and put up the "code":http://github.com/jpoz/APNS/ on github. It's easy to install using github's gem server:
 
 h2. Installation:
 
