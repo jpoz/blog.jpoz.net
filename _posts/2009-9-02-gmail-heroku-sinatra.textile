@@ -12,6 +12,8 @@ p. Now in a post(probably) add a pony line that's configured to use smtp:
 
 p. The only thing left is to add pony to your .gems file and you are ready to email people from Sinatra on Heroku using gmail!!
 
+<script src="http://gist.github.com/180382.js"></script>
+
 I created a fun app to annoy one of my coworkers. If you'd like to send my coworker and email (to all his addresses) click the link below!
 
 "http://emailmax.heroku.com/":http://emailmax.heroku.com/
