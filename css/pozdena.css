@@ -2,8 +2,16 @@
  font-family: "Helvetica Neue", Arial, sans-serif;
  color: #1C1C1C;
 }
+code {
+   font-family: "Courier";
+   background: #DEDEDE;
+   padding: 1px 5px;
+}
 body {
   background: lightgrey;
+}
+td {
+  vertical-align: top;
 }
 .title {
   font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
@@ -36,6 +44,9 @@ ul {
 }
 #post {
   padding-bottom: 70px;
+}
+#post a {
+  text-decoration: underline !important;
 }
 .pronuc {
  float: right;
