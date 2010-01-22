@@ -163,7 +163,7 @@ p. Again navigate your way to "http://0.0.0.0:4567/":http://0.0.0.0:4567/ . Hit 
 
 p. Anything you put between <code><%=</code> and <code>%></code> will be evaluated. You could replace that with the current time, something you pull from a web resource or the user's current ip.
 
-p. If you'd like to learn more about Sinatra check out: "http://sinatrarb.com":http://sinatrarb.com
+p. If you'd like to learn more about Sinatra check out: "http://www.sinatrarb.com":http://www.sinatrarb.com
 
 h2. Conclusion
 
