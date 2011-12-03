@@ -1,122 +1,129 @@
-* {
- font-family: "Helvetica Neue", Arial, sans-serif;
- color: #1C1C1C;
+html {
+ font-family: 'Arapey', serif;
 }
-code {
-   font-family: "Courier";
-   background: ghostWhite;
-   padding: 1px 5px;
-}
+
 body {
-  background: lightgrey;
+  font-size: 1.1em;
+  background: #effbff;
+  text-shadow: 0px 0px 1px #DDD;
+  filter: dropshadow(color=#DDD, offx=0, offy=0);
 }
-td {
-  vertical-align: top;
-}
-.title {
-  font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
-  font-size: 40px;
-}
-.name {
- line-height: .95;
- font-style: italic;
- text-align: left;
- font-size: 50px;
- font-weight: bold;
- padding-bottom: 20px;
- color: #141414;
-}
-ul {
-  margin: 0px;
-  list-style-type: none;
-}
-.page_title {
- color: #BC0004;
-}
-.post_date {
-  font-size: 14px;
-  font-style: italic;
-  padding-left: 16px;
-  color: #999;
-}
-.posts {
-  font-size: 24px;
-}
-#post {
-  padding-bottom: 70px;
-}
-#post a {
-  text-decoration: underline !important;
-}
-.pronuc {
- float: right;
- font-weight: normal;
- color: #999;
- font-size: 16px;
-}
-.extra {
- margin-left: 6px;
- float: right;
- font-size: 16px;
-}
-.info {
- font-style: italic;
- text-align: justify; 
- font-size: 26px;
-}
-.definition {
- text-align: justify;
- font-weight: bold;
- font-size: 34px;
-}
-.date {
-  color: #545454;
-}
-#links {
- text-align: right;
- border-bottom: 3px solid #3C3C3C;
- padding-bottom: 10px;
-}
-#main {
- background: white;
- padding: 40px;
- -moz-border-radius: 10px;
- -webkit-border-radius: 10px;
- -moz-box-shadow:10px 10px 5px #888888;
- -webkit-box-shadow: rgb(136, 136, 136) 10px 10px 5px;
- width: 795px;
- text-align: left;
- margin: 50px auto;
-}
-.even {
- color: #969696;
-}
-.odd {
- color: #545454;
-}
+
 a {
- padding: .1em .2em;
- text-decoration: none;
+  color: #44627a;
+  text-decoration: none;
+}
+a:visited {
+  color: #44627a;
 }
 a:hover {
- background: #BC0004;
- color: #FFF;
- text-decoration: none;
-}
-.github {
- float: right;
-}
-.github img {
- border: none;
- margin-top: 4px;
-}
-.github:hover {
- background: none;
-}
-.gist-meta a:hover {
-  background: none !important;
   text-decoration: underline;
 }
-#dialog {
- font-size: 10px;
+
+header {
+  opacity:0.9;
+  filter:alpha(opacity=90); /* For IE8 and earlier */
+  font-family: 'Bitter', serif;
+  background: #7dacc9;
+  color: #fdfdfd;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  border-top: 3px solid #47687f;
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(1, 1, 1, 0.2);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(1, 1, 1, 0.2);
+  box-shadow: 0px 0px 10px 1px rgba(1, 1, 1, 0.2);
+}
+
+header h2 {
+  font-family: 'Arapey', serif;
+  font-style: italic;
+  font-size: 15px;
+  padding-left: 10px;
+  float: left;
+  opacity: 10%;
+}
+
+header h1 {
+  font-size: 30px;
+  line-height: 30px;
+  padding: 0px;
+  margin: 10px 0px 10px 30px;
+  text-shadow: 2px 2px 0px #47687f;
+  filter: dropshadow(color=#47687f, offx=2, offy=2);
+  float: left;
+}
+
+header h1 a {
+  color: #fdfdfd;
+  text-decoration: none;
+}
+header h1 a:visited {
+  color: #fdfdfd;
+}
+header h1 a:hover {
+  text-decoration: underline;
+}
+
+
+menu {
+  border-left: 2px solid #ddf2ff;
+  float: right;
+  padding: 0px 30px;
+  margin: 0px 0px 0px 0px;
+  line-height: 50px;
+}
+
+menu a {
+  color: #fdfdfd;
+  text-decoration: none;
+}
+
+menu a:visited {
+  color: #fdfdfd;
+}
+
+menu a:hover {
+  text-decoration: underline;
+}
+
+#main {
+  border-top: 50px solid rgba(228, 245, 255, 1);
+  padding: 5em 10%;
+  background: #fff;
+
+  -webkit-box-shadow: inset 0px 0px 5em 1px rgba(228, 245, 255, 1);
+  -moz-box-shadow: inset 0px 0px 5em 1px rgba(228, 245, 255, 1);
+  box-shadow: inset 0px 0px 5em 1px rgba(228, 245, 255, 1);
+}
+
+ul.posts {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+ul.posts .post {
+  font-size: 20px;
+  padding-bottom: 15px;
+}
+
+ul.posts .post_date {
+  float: right;
+  font-style: italic;
+}
+
+
+#menu_title {
+  margin: -100px auto 0px auto;
+  width: 400px;
+  text-align: center;
+  font-size: 90px;
+  line-height: 120px;
+  color:#e7f3f9 ;
+}
+
+#post_title {
+  margin-top: -30px;
+  text-shadow: none;
 }
