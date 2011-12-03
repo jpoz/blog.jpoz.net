@@ -1,0 +1,180 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>JPoz - Do you wanna be a Ruby web developer?</title>
+	<meta name="author" content="James Pozdena">
+  <link href="/atom.xml" rel="alternate" title="JPoz - Blog" type="application/atom+xml" />
+  <link href='http://fonts.googleapis.com/css?family=Bitter|Arapey:400italic,400' rel='stylesheet' type='text/css'>
+
+	<meta name="description" content="The thoughts of James Pozdena">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/pozdena.css" type="text/css" />
+
+	<script src="js/libs/modernizr-2.0.6.min.js"></script>
+</head>
+<body>
+
+<div id="container">
+  <header>
+    <menu>
+      <a href='http://github.com/jpoz' target='_blank'>code</a>
+    </menu>
+    <h1>
+      <a href='/'>
+        JPoz
+      </a>
+    </h1>
+
+  </header>
+  <div id="main" role="main">
+    <h1 id='post_title'>
+  Do you wanna be a Ruby web developer?
+</h1>
+<div id="post">
+  <p>A friend recently sent me the ambiguous text message &#8220;How do I become a rails developer?&#8221;. I sent him back: &#8220;the rails way&#8221;. I&#8217;m not sure how helpful that really was so I decided to write him a short primer on not Rails development, but just web development in general, with a ruby flavor.</p>
+<blockquote>
+<p>Note to reader. If you know what <span class="caps">HTML</span>, <span class="caps">CSS</span>, Ruby, Sinatra or Rails. This read is not for you. This post is for someone who has zero web development experience.</p>
+</blockquote>
+<h2>Purpose of this article:</h2>
+<p>This article purpose is not detail. It is a nice 1000 foot view of some of the tools you would need to become proficient in to do web development (with Ruby). We will look at 5 things:</p>
+<ol>
+	<li><span class="caps">HTML</span></li>
+	<li><span class="caps">CSS</span></li>
+	<li>The Terminal &#8211; A program on Mac OS</li>
+	<li>Ruby &#8211; A programming language</li>
+	<li>Sinatra &#8211; a very simple Ruby web framework</li>
+</ol>
+<h2><span class="caps">HTML</span></h2>
+<p><span class="caps">HTML</span> in short is what web browsers eat for breakfast, lunch and dinner. It tells them how to layout each webpage you go to. Want an example? Well you&#8217;re using a web browser right now aren&#8217;t you? If you&#8217;re using Safari go to the View menu and select &#8216;View Source&#8217;. That source is <span class="caps">HTML</span>. Don&#8217;t worry if it looks incredibly complex, it is! That&#8217;s why we use web frameworks to simplify it down. But more on that later.</p>
+<p>Hyper Text Markup Language (<span class="caps">HTML</span>) is made up elements. Each element can have attributes (style, id, class etc) and each can have child elements. Usually <span class="caps">HTML</span> elements are denoted with two tags. The starting tag <code>&lt;p&gt;</code> and the ending tag <code>&lt;/p&gt;</code>. Inside those two tags are that elements child elements. Think about <span class="caps">HTML</span> as a big russian nesting doll. Let&#8217;s look at a very basic example:</p>
+<script src="http://gist.github.com/280138.js?file=gistfile1.htm"></script><p>The main element is the &#8216;html&#8217; element. Note the starting tag on the first line and the ending tag on the last line. Everything else is a child element of the html element. It&#8217;s two direct child elements are the &#8216;head&#8217; and &#8216;body&#8217; elements. The head element holds information like the page&#8217;s title and other files the web browser needs to load to display the page correctly. The body is where all the elements that are going to be rendered in the web browser&#8217;s window go. This can include tables, links, headers, images, videos, etc. If you&#8217;d like to see the example in action: <a href="/examples/developer_example.html">click here</a></p>
+<p>That was a <strong><span class="caps">SUPER</span></strong> quick intro to <span class="caps">HTML</span> if you&#8217;d like more information W3 Schools has a great free tutorial. <a href="http://www.w3schools.com/html/default.asp">Link</a></p>
+<h2><span class="caps">CSS</span></h2>
+<p>Let&#8217;s bring some style to the web. <span class="caps">CSS</span> or Cascading Style Sheets are how we make the web pretty. We could manually set the style on each element by setting the &#8216;style&#8217; attribute on each element, but that&#8217;s really annoying. With <span class="caps">CSS</span> you set selectors. These selectors find elements on the page. You then you give those selectors styles. The styles then &#8216;cascade&#8217; down all the elements the selector finds. Let look at and example.</p>
+<script src="http://gist.github.com/280726.js?file=gistfile1.css"></script><p>Here we set our selectors and the style we&#8217;re going to give them. The first selector is &#8216;body&#8217;. The &#8216;body&#8217; selector will select the body element from our <span class="caps">HTML</span> and apply all the styles between the curly braces { }. For this example I decided to give it a nice limegreen background color. <span class="caps">CSS</span> styles are denoted by an attribute followed by the desired value. In this case our attribute is &#8216;background&#8217; and our desired value is &#8216;limegreen&#8217;.</p>
+<p>You&#8217;ll notice the next selector has a &#8216;#&#8217; in front of it. This means it is an id selector. It will look for an element that has &#8216;id&#8217; set to the value after the &#8216;#&#8217;. So in this case it will look for the element that has the id &#8216;main_title&#8217;. For the main_title I wanted to make the font size really big. I did this by setting the attribute &#8216;font-size&#8217; with the value &#8216;100px&#8217;. This will make the font size of the text in that element 100px.</p>
+<p>The last selector has a &#8216;.&#8217; in front of it. That means it is a class selector. It will look for all elements that have the &#8216;class&#8217; of the value after the &#8216;.&#8217;. In this case it will look for all the elements that have the &#8216;main&#8217; class. I&#8217;ve added some example styles to that selector, read through them and see if you can guess what they do.</p>
+<p>To add our style to our <span class="caps">HTML</span> document we have to load it in the head. Below is our style added to the <span class="caps">HTML</span> from the first example. If you&#8217;d like to see this example in action: <a href="/examples/developer_example2.html">click here</a></p>
+<script src="http://gist.github.com/280722.js?file=example2.html"></script><p>Again W3 Schools has an great free tutorial you should really checkout: <a href="http://www.w3schools.com/css/css_intro.asp">Link</a></p>
+<h2>The Terminal</h2>
+<p>When reading the next section please remember &#8216;With great power comes great responsibility&#8217;. The terminal is your direct connection to your Mac. No buttons, menus or prompts in your way. You type, it does. So be careful what you type. I&#8217;ll give you a couple commands in this section so you can navigate your way around your computer in your terminal. The terminal is used by a web developer to run servers, open files, download files and saving your work. Almost everything.</p>
+<p><strong>Step 1 &#8211; Open Terminal:</strong> Terminal should be located in Applications &gt; Utilities. If you can&#8217;t find it, there is always Spotlight to help you out.</p>
+<p><strong>Step 2 &#8211; Where the crap am I?:</strong> When you open your terminal you should see something like the image below. Probably not totally like mine (I&#8217;ve got some fancy add-ons) but if you have some text then a box that reminds you of a 1995 <span class="caps">DOS</span> machine, you&#8217;re in the right place.</p>
+<p><img src='http://www.pozdena.org/snaps/11830ac412494db79c09e5ef1e41a683.png'/></p>
+<p>To find out where you are, type <code>pwd</code> then hit return. This will return the absolute path of where you are. This is most likely something like &#8216;/Users/(your username)&#8217;. This means you&#8217;re in your user folder right now.</p>
+<p><strong>Step 3 &#8211; What&#8217;s in here?:</strong> Okay we know what folder we&#8217;re in. Now lets see what we got. Type <code>ls</code> and hit return. This will return a list of the items in the folder.</p>
+<p><strong>Step 4 &#8211; How do I move around?:</strong> You probably don&#8217;t want to stay in the same folder forever. Lets get a move-on. The <code>cd</code> command is how we&#8217;ll move around. You can pass cd either a relative path from where you are or an absolute path to get anywhere on your computer. To denote an absolute path you start your path with a &#8216;/&#8217;.</p>
+<p>Let&#8217;s try it out. You know what folders are in your current folder by the information <code>ls</code> returned. Choose a folder and type <code>cd </code> then the folder name and hit return. (Pro tip: if you can&#8217;t remember the exact spelling or name of a path hit tab. It will try to autocomplete what you are typing). For example if I wanted to move into the Desktop folder I would type <code>cd Desktop</code>.</p>
+<p>Now that you know how to get into a folder you need to know how to get out. By typing <code>cd ../</code> you will go back to the folder you were just in. It moves you from the current directory to that directory&#8217;s parent directory.</p>
+<p>One really useful shortcut is <code>cd ~/</code>. Enter that command and where ever you are it will take you directly back to your home folder.</p>
+<p><strong>Step 4.5 &#8211; I&#8217;m bored make it do something for me:</strong> Okay okay&#8230; The terminal is also a place where you can run &#8216;utility&#8217; programs or programs that have no user interface. Let&#8217;s start off with a really simple one. Make sure your volume is at a decent level, then type <code>say hello there friend</code> and hit return. You just ran a utility called <code>say</code>. In the terminal you first write what program you&#8217;d like to run, then the parameters you&#8217;d like to pass the program. In this case we ran the program <code>say</code> with the parameters <code>hello there friend</code>.</p>
+<p><strong>Step 5 &#8211; Lets make something!:</strong> Use <code>cd ~/Desktop</code> to move into your Desktop. Type <code>ls</code> again to list the item on your desktop. Look right? Good. We are now going to make a new folder. Type <code>mkdir awesome</code> and hit return. This should create a new folder (aka directory) on your desktop. Go look at your desktop a new folder named &#8220;awesome&#8221; should waiting for you.</p>
+<p>For reference here&#8217;s a quick cheat sheet:<br />
+<br /></p>
+<p><code>  pwd - Absolute path of where you are.                     </code><br />
+<code>  ls - List current directory's (aka folder's) contents.    </code><br />
+<code>  cd - Change directory aka move to path.                   </code><br />
+<code>  mkdir - Make directory aka make new folder.               </code><br />
+<code>  say - Make your computer talk funny.                      </code></p>
+<p>I think that&#8217;s enough for now. Next up the best programming language ever: <strong><span class="caps">RUBY</span></strong> <sup>1</sup>.</p>
+<h2>Ruby</h2>
+<p><a href="http://www.ruby-lang.org/en/">Ruby</a> is a programming language. More specifically Ruby is a dynamic, open source programming language with a focus on simplicity and productivity. It was created by a dude in Japan named Yukihiro Matsumoto aka &#8216;Matz&#8217;.</p>
+<p>Ruby is a good language for beginners. It&#8217;s a very expressive dynamic language which has a lot less overhead to learn compared to other languages like C or Java. It also doesn&#8217;t need to be compiled. You can give your ruby code straight to the interpreter and it will run. And look how pretty it is. Below are two pieces of code that do the same thing. One written in C, the other in Ruby. Try to figure out what they do. Which one would you rather work with?</p>
+<table>
+	<tr>
+		<td> <strong>C</strong> </td>
+		<td> <strong>Ruby</strong> </td>
+	</tr>
+	<tr>
+		<td><script src="http://gist.github.com/282406.js?file=gistfile1.h"></script></td>
+		<td><script src="http://gist.github.com/282407.js?file=gistfile1.rb"></script></td>
+	</tr>
+</table>
+<p>What&#8217;s even better is you probably already have Ruby installed on your computer! Go back to Terminal and type <code>ruby -v</code> and hit return. It should return something like:</p>
+<p><code>ruby 1.8.7 (2008-08-11 patchlevel 72) [universal-darwin10.0]</code></p>
+<p>You also don&#8217;t need any fancy program to develop in Ruby. All you need is a good text editor. For Ruby development, I would recommend getting something like TextMate <a href="http://macromates.com/">http://macromates.com/</a> which is free for the first 30 days. But something as simple as Textedit would work.</p>
+<h3>Let&#8217;s program something already damn it</h3>
+<p>Okay lets do something with Ruby! First things first, go back to Terminal. You should be somewhere where you don&#8217;t mind making a couple files. If you&#8217;re not <code>cd</code> to a directory where you don&#8217;t mind having some random files lying around. Then type <code>touch my_first_ruby.rb</code> and hit return. You just created a file named &#8216;my_first_ruby.rb&#8217; in that folder. Now open that file with TextEdit or TextMate if you downloaded it.</p>
+<p>You now have a canvas for your first creation. What will it do? How about complement you on how nice you are? Sounds good to me. Copy or enter the code you see below into your &#8216;my_first_ruby.rb&#8217; file and save it.</p>
+<script src="http://gist.github.com/282497.js?file=my_first_ruby.rb"></script><p>Take a minute and look through the code you just created. Look over each line and see if you can guess what it&#8217;s going to do.</p>
+<p>Now go back to your Terminal and type <code>ruby my_first_ruby.rb</code> and hit return. You should get something like:</p>
+<p><img src='http://www.pozdena.org/snaps/f11b2b80d2c0e7713d727dfe9b80ae57.png'/></p>
+<p>Now it&#8217;s time to learn a bit of Ruby. You don&#8217;t need me for that: Checkout <a href="http://www.tryruby.org/">http://www.tryruby.org/</a> (make sure you&#8217;re using Firefox not Safari or Chrome). It is an interactive tutorial on Ruby!</p>
+<h2>Sinatra</h2>
+<p>Sinatra is a very simple Ruby web framework. So simple in fact you can get a web server up and running in less than 6 lines of code:</p>
+<script src="http://gist.github.com/282509.js?file=my_first_server.rb"></script><p>Make a new file named &#8216;my_first_server.rb&#8217; on your desktop. You can use <code>touch my_first_server.rb</code> to make it. Copy the code above into &#8216;my_first_server.rb&#8217; file you just created on your desktop and save it. Then type <code>ruby my_first_server.rb</code> into Terminal and hit return. You should get an error like the one below:</p>
+<p><img src='http://www.pozdena.org/snaps/bc2fd4fb4c6182df83af27abe26ba861.png'/></p>
+<p>This is because you haven&#8217;t installed Sinatra yet. Ruby has libraries of code called &#8216;gems&#8217;. These libraries hold pre-made functionality for you. Sinatra boxes up a nice and clean way to make a simple web server with minimal effort. Luckily it&#8217;s easy to install new gems. Back in Terminal type:</p>
+<p><code>sudo gem install sinatra --source http://gemcutter.org/</code></p>
+<p>Before you hit return, let me explain that command. The first word <code>sudo</code> tells terminal to run the following command as the &#8220;superuser&#8221; or administrator of the computer. The rest of the command <code>gem install sinatra --source http://gemcutter.org/</code> will install the library. It tries to locate a copy of the software on the ruby gem server (gemcutter.org), downloads it and installs it. Now hit return. It will ask you your password since you are running this command as a superuser. Type in your password (don&#8217;t worry if you don&#8217;t see anything) and hit return to install Sinatra.</p>
+<p>If you run into any trouble you might need to update your <code>gem</code> utility. To do that type the following into your Terminal and hit return:</p>
+<p><code>sudo gem update --system</code></p>
+<p>Then try <code>ruby my_first_server.rb</code> in Terminal once again. Your server should start correctly:</p>
+<p><img src='http://www.pozdena.org/snaps/3a02c909bbd2bd1ee74493e2412fd202.png'/></p>
+<p>Sinatra just started up a server for you on port 4567. Make another window or tab and go to <a href="http://0.0.0.0:4567/">http://0.0.0.0:4567/</a> (the 0.0.0.0 is your computer local address). When you visit <a href="http://0.0.0.0:4567/">http://0.0.0.0:4567/</a> you should see your brand new web server responding back!</p>
+<p>To use Sinatra you set &#8220;routes&#8221; by writing <code>get '(route)'</code>. In our example we set the route &#8220;/&#8221;, which is the root route to our server. Once you set a route you need to set what Sinatra will return when someone visits that route. Sinatra will return the last line of the code block declared after the route. In the example above the last line in our code block was &#8216;Well hello there&#8217;. So when someone visits <a href="http://0.0.0.0:4567/">http://0.0.0.0:4567/</a> it will return &#8216;Well hello there&#8217; to them.</p>
+<p>Let&#8217;s set some more routes. Replace the code in &#8216;my_first_server.rb&#8217; with the code below and save it. Stop your server in Terminal by holding down <span class="caps">CTRL</span>-C and restart your server by typing <code>ruby my_first_server.rb</code> in Terminal once again.</p>
+<script src="http://gist.github.com/283529.js?file=my_first_server.rb"></script><p>Now trying going to <a href="http://0.0.0.0:4567/what_time_is_it">http://0.0.0.0:4567/what_time_is_it</a> and <a href="http://0.0.0.0:4567/super/secret/route">http://0.0.0.0:4567/super/secret/route</a> in a web browser. In the first route (<a href="http://0.0.0.0:4567/what_time_is_it">http://0.0.0.0:4567/what_time_is_it</a>) we are generating what the server will return dynamically by getting the current time <code>Time.now</code> converting it to a string <code>.to_s</code> and appending it to the string &#8217;The current time is &#8217;. Now when you go to <a href="http://0.0.0.0:4567/what_time_is_it">http://0.0.0.0:4567/what_time_is_it</a> you can see what time it is.</p>
+<p>Our Sinatra server doesn&#8217;t return valid <span class="caps">HTML</span> yet. So let&#8217;s take care of that little problem. To do that we&#8217;ll use files called <span class="caps">ERB</span> template views. These are templates that will render down to <span class="caps">HTML</span> but allow us to add dynamic elements into them. To do this we&#8217;ll have to make some new files and folders. Below is a screen shot of the files and folders you need to create.</p>
+<p><img src='http://www.pozdena.org/snaps/0e7c9988d1cf000f370deb7527462827.png'/></p>
+<script src="http://gist.github.com/44f1e3efa5121a55b126.js?file=example2.html"></script><p>Create the files you see above and copy the code from <a href='http://gist.github.com/raw/44f1e3efa5121a55b126/995ae46be3dc0f896c33d003c3f7fa8cf3a3f283/sinatra_server.rb' target='_blank'>sinatra_server.rb</a> and <a href='http://gist.github.com/raw/44f1e3efa5121a55b126/a9a09de84b5f22901c3c967065744d4847e35e1f/index.erb' target='_blank'>index.html</a> into their respective files. Now navigate you way into that folder in Terminal and run your Sinatra server by runing <code>ruby sinatra_server.rb</code>.</p>
+<p>Again navigate your way to <a href="http://0.0.0.0:4567/">http://0.0.0.0:4567/</a> . Hit reload a couple times. You&#8217;ll see &#8216;the coolest number in the world&#8217; switch around. This is because your server is evaluating the index.erb file every time the page is loaded. Go look back at the index.erb file. You&#8217;ll see:</p>
+<p><code>&lt;%= rand(1000) %&gt;</code></p>
+<p>Anything you put between <code>&lt;%=</code> and <code>%&gt;</code> will be evaluated. You could replace that with the current time, something you pull from a web resource or the user&#8217;s current ip.</p>
+<p>If you&#8217;d like to learn more about Sinatra check out: <a href="http://www.sinatrarb.com">http://www.sinatrarb.com</a></p>
+<h2>Conclusion</h2>
+<p>The goal of this article was for you to get a feel of what tools a Ruby developer works with. These are just the very basics but gives you a glimpse into the world of web development. If you liked what you saw congratulations there is the exciting world of web development waiting for you. If you didn&#8217;t, well I&#8217;m sorry, but at least now you know a little more about the web.</p>
+<p>Thanks for reading!</p>
+<h3>Notes</h3>
+<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> Okay, Ruby might not be the best programming language ever. But I still love it.</p>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+		var links = document.getElementsByTagName('a');
+		var query = '?';
+		for(var i = 0; i < links.length; i++) {
+			if(links[i].href.indexOf('#disqus_thread') >= 0) {
+				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+			}
+		}
+		document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/jpoz/get_num_replies.js' + query + '"></' + 'script>');
+	})();
+//]]>
+</script>
+
+<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/jpoz/embed.js"></script><noscript><a href="http://jpoz.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+  <footer>
+
+  </footer>
+</div> <!--! end of #container -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+<script>
+	var _gaq=[['_setAccount','UA-3441225-6'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<!--[if lt IE 7 ]>
+	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+<![endif]-->
+
+</body>
+</html>
+

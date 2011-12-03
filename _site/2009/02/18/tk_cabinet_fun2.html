@@ -1,0 +1,154 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>JPoz - Tokyo Cabinet benchmarking</title>
+	<meta name="author" content="James Pozdena">
+  <link href="/atom.xml" rel="alternate" title="JPoz - Blog" type="application/atom+xml" />
+  <link href='http://fonts.googleapis.com/css?family=Bitter|Arapey:400italic,400' rel='stylesheet' type='text/css'>
+
+	<meta name="description" content="The thoughts of James Pozdena">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/pozdena.css" type="text/css" />
+
+	<script src="js/libs/modernizr-2.0.6.min.js"></script>
+</head>
+<body>
+
+<div id="container">
+  <header>
+    <menu>
+      <a href='http://github.com/jpoz' target='_blank'>code</a>
+    </menu>
+    <h1>
+      <a href='/'>
+        JPoz
+      </a>
+    </h1>
+
+  </header>
+  <div id="main" role="main">
+    <h1 id='post_title'>
+  Tokyo Cabinet benchmarking
+</h1>
+<div id="post">
+  <p class="date">18 Feb 2009</p>
+<p>Tonight I did a little bit more hacking with Tokyo Cabinet. For a current project I’m looking for a super fast ultra light db that I can quickly dump CSVs into and quickly run some simple queries to get data out. And I thought Tokyo Cabinet would be a great candidate. So to be sure, I decided to put Tokyo Cabinet vs. Rufus-Tokyo vs. DataMapper (using do_posgres).</p>
+<p>The result were a little surprising. Tokyo Cabinets B-tree database engine is amazingly fast, eating 10,000 inserts in less than 0.15 seconds. The hash database engine came in a close second taking a little less than half a second for the same 10,000 inserts. And coming 91 times slower than the B-tree and 24 times slower than the hash is DataMapper with a little over 11 seconds.</p>
+<p>That’s all well and good and I assumed I would be getting just about the same results when I tried to pull data out, but Rufus and DataMapper switched. Although Tokyo Cabinet’s B-tree database engine was still the fastest, it’s hash tree engine was now slower than Datamapper.</p>
+<p>This came as quite a disappointment. Tokyo Cabinet is so easy to use and I really loved how the databases could be so easily created and destroyed. I can’t use the B-tree engine because it just won’t allow me to do the queries I want to do and I can’t justify using a database that is 43 times slower than it’s competitor. I’m hoping another <span class="caps">API</span> (maybe the dm-tokyo-cabinet-adapter) will be faster, but I think that’s enough benchmarking for one night.</p>
+<p>The details below:</p>
+<p>Insert 10,000 records from <span class="caps">CSV</span> (using FasterCSV)</p>
+<table>
+	<tr>
+		<td> </td>
+		<td> user </td>
+		<td> system </td>
+		<td> total </td>
+		<td> real </td>
+	</tr>
+	<tr>
+		<td> Tokyo: B-tree </td>
+		<td> 0.120000 </td>
+		<td> 0.020000 </td>
+		<td> 0.140000 </td>
+		<td> (0.142824) </td>
+	</tr>
+	<tr>
+		<td> Tokyo: Rufus </td>
+		<td> 0.450000 </td>
+		<td> 0.110000 </td>
+		<td> 0.560000 </td>
+		<td> (0.572258) </td>
+	</tr>
+	<tr>
+		<td> DataMapper: Postgres </td>
+		<td> 11.230000 </td>
+		<td> 0.110000 </td>
+		<td> 12.210000 </td>
+		<td> (21.524662) </td>
+	</tr>
+</table>
+<p>Get 100</p>
+<table>
+	<tr>
+		<td> </td>
+		<td>                     user    </td>
+		<td>   system   </td>
+		<td>  total   </td>
+		<td>    real </td>
+	</tr>
+	<tr>
+		<td> Tokyo: B-tree       </td>
+		<td>  0.000000 </td>
+		<td>  0.000000 </td>
+		<td>  0.000000 </td>
+		<td> (  0.001434) </td>
+	</tr>
+	<tr>
+		<td> Tokyo: Rufus        </td>
+		<td>  1.730000 </td>
+		<td>  0.010000 </td>
+		<td>  1.740000 </td>
+		<td> (  1.771523) </td>
+	</tr>
+	<tr>
+		<td> DataMapper: Postgres </td>
+		<td> 0.040000 </td>
+		<td>  0.010000 </td>
+		<td>  0.050000 </td>
+		<td> (  0.268635) </td>
+	</tr>
+</table>
+<p>Code used for beachmarking:</p>
+<p>Liquid error: undefined method `join&#8217; for #<String:0x007f92d40f27b0></p>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+		var links = document.getElementsByTagName('a');
+		var query = '?';
+		for(var i = 0; i < links.length; i++) {
+			if(links[i].href.indexOf('#disqus_thread') >= 0) {
+				query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+			}
+		}
+		document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/jpoz/get_num_replies.js' + query + '"></' + 'script>');
+	})();
+//]]>
+</script>
+
+<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/jpoz/embed.js"></script><noscript><a href="http://jpoz.disqus.com/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  </div>
+  <footer>
+
+  </footer>
+</div> <!--! end of #container -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+<script>
+	var _gaq=[['_setAccount','UA-3441225-6'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<!--[if lt IE 7 ]>
+	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+<![endif]-->
+
+</body>
+</html>
+

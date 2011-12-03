@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Jpoz - Blog</title>
+ <link href="http://blog.jpoz.com/atom.xml" rel="self"/>
+ <link href="http://blog.jpoz.com/"/>
+ <updated>2011-12-03T14:43:57-08:00</updated>
+ <id>http://blog.jpoz.com/</id>
+ <author>
+   <name>JPoz</name>
+   <email>jpoz@jpoz.net</email>
+ </author>
+
+ 
+ <entry>
+   <title>My first Clojure</title>
+   <link href="http://blog.jpoz.net/2010/02/21/my-first-clojure.html"/>
+   <updated>2010-02-21T00:00:00-08:00</updated>
+   <id>http://blog.jpoz.net/2010/02/21/my-first-clojure</id>
+   <content type="html">&lt;p&gt;My first attempt at Clojure went pretty well. Not really sure if it&amp;#8217;s &amp;#8220;good&amp;#8221; Clojure, but I&amp;#8217;m very happy it works. :-)&lt;/p&gt;
+&lt;p&gt;The first problem I set out for myself with Clojure was to calculate a simple liner regression (&lt;span class=&quot;caps&quot;&gt;OLS&lt;/span&gt;). I wanted to find the relationship between 2 sets of numbers. The output being a y = mx+b equation. Clojure needed to calculate m (the beta) and b (the y intercept). Below is what I came up with. Two equations: olsbeta and yintercept with 2 utility functions sum and multsum.&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/310655.js?file=gistfile1.clj&quot;&gt;&lt;/script&gt;&lt;p&gt;Which returns: &lt;code&gt;y = 61.272186542107434*x + -39.06195591883866&lt;/code&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Do you wanna be a Ruby web developer?</title>
+   <link href="http://blog.jpoz.net/2010/01/18/so_you_wanna_be_a_ruby_developer.html"/>
+   <updated>2010-01-18T00:00:00-08:00</updated>
+   <id>http://blog.jpoz.net/2010/01/18/so_you_wanna_be_a_ruby_developer</id>
+   <content type="html">&lt;p&gt;A friend recently sent me the ambiguous text message &amp;#8220;How do I become a rails developer?&amp;#8221;. I sent him back: &amp;#8220;the rails way&amp;#8221;. I&amp;#8217;m not sure how helpful that really was so I decided to write him a short primer on not Rails development, but just web development in general, with a ruby flavor.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note to reader. If you know what &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt;, &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt;, Ruby, Sinatra or Rails. This read is not for you. This post is for someone who has zero web development experience.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Purpose of this article:&lt;/h2&gt;
+&lt;p&gt;This article purpose is not detail. It is a nice 1000 foot view of some of the tools you would need to become proficient in to do web development (with Ruby). We will look at 5 things:&lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;&lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;The Terminal &amp;#8211; A program on Mac OS&lt;/li&gt;
+	&lt;li&gt;Ruby &amp;#8211; A programming language&lt;/li&gt;
+	&lt;li&gt;Sinatra &amp;#8211; a very simple Ruby web framework&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; in short is what web browsers eat for breakfast, lunch and dinner. It tells them how to layout each webpage you go to. Want an example? Well you&amp;#8217;re using a web browser right now aren&amp;#8217;t you? If you&amp;#8217;re using Safari go to the View menu and select &amp;#8216;View Source&amp;#8217;. That source is &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt;. Don&amp;#8217;t worry if it looks incredibly complex, it is! That&amp;#8217;s why we use web frameworks to simplify it down. But more on that later.&lt;/p&gt;
+&lt;p&gt;Hyper Text Markup Language (&lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt;) is made up elements. Each element can have attributes (style, id, class etc) and each can have child elements. Usually &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; elements are denoted with two tags. The starting tag &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; and the ending tag &lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt;. Inside those two tags are that elements child elements. Think about &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; as a big russian nesting doll. Let&amp;#8217;s look at a very basic example:&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/280138.js?file=gistfile1.htm&quot;&gt;&lt;/script&gt;&lt;p&gt;The main element is the &amp;#8216;html&amp;#8217; element. Note the starting tag on the first line and the ending tag on the last line. Everything else is a child element of the html element. It&amp;#8217;s two direct child elements are the &amp;#8216;head&amp;#8217; and &amp;#8216;body&amp;#8217; elements. The head element holds information like the page&amp;#8217;s title and other files the web browser needs to load to display the page correctly. The body is where all the elements that are going to be rendered in the web browser&amp;#8217;s window go. This can include tables, links, headers, images, videos, etc. If you&amp;#8217;d like to see the example in action: &lt;a href=&quot;/examples/developer_example.html&quot;&gt;click here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;That was a &lt;strong&gt;&lt;span class=&quot;caps&quot;&gt;SUPER&lt;/span&gt;&lt;/strong&gt; quick intro to &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; if you&amp;#8217;d like more information W3 Schools has a great free tutorial. &lt;a href=&quot;http://www.w3schools.com/html/default.asp&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Let&amp;#8217;s bring some style to the web. &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt; or Cascading Style Sheets are how we make the web pretty. We could manually set the style on each element by setting the &amp;#8216;style&amp;#8217; attribute on each element, but that&amp;#8217;s really annoying. With &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt; you set selectors. These selectors find elements on the page. You then you give those selectors styles. The styles then &amp;#8216;cascade&amp;#8217; down all the elements the selector finds. Let look at and example.&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/280726.js?file=gistfile1.css&quot;&gt;&lt;/script&gt;&lt;p&gt;Here we set our selectors and the style we&amp;#8217;re going to give them. The first selector is &amp;#8216;body&amp;#8217;. The &amp;#8216;body&amp;#8217; selector will select the body element from our &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; and apply all the styles between the curly braces { }. For this example I decided to give it a nice limegreen background color. &lt;span class=&quot;caps&quot;&gt;CSS&lt;/span&gt; styles are denoted by an attribute followed by the desired value. In this case our attribute is &amp;#8216;background&amp;#8217; and our desired value is &amp;#8216;limegreen&amp;#8217;.&lt;/p&gt;
+&lt;p&gt;You&amp;#8217;ll notice the next selector has a &amp;#8216;#&amp;#8217; in front of it. This means it is an id selector. It will look for an element that has &amp;#8216;id&amp;#8217; set to the value after the &amp;#8216;#&amp;#8217;. So in this case it will look for the element that has the id &amp;#8216;main_title&amp;#8217;. For the main_title I wanted to make the font size really big. I did this by setting the attribute &amp;#8216;font-size&amp;#8217; with the value &amp;#8216;100px&amp;#8217;. This will make the font size of the text in that element 100px.&lt;/p&gt;
+&lt;p&gt;The last selector has a &amp;#8216;.&amp;#8217; in front of it. That means it is a class selector. It will look for all elements that have the &amp;#8216;class&amp;#8217; of the value after the &amp;#8216;.&amp;#8217;. In this case it will look for all the elements that have the &amp;#8216;main&amp;#8217; class. I&amp;#8217;ve added some example styles to that selector, read through them and see if you can guess what they do.&lt;/p&gt;
+&lt;p&gt;To add our style to our &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; document we have to load it in the head. Below is our style added to the &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; from the first example. If you&amp;#8217;d like to see this example in action: &lt;a href=&quot;/examples/developer_example2.html&quot;&gt;click here&lt;/a&gt;&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/280722.js?file=example2.html&quot;&gt;&lt;/script&gt;&lt;p&gt;Again W3 Schools has an great free tutorial you should really checkout: &lt;a href=&quot;http://www.w3schools.com/css/css_intro.asp&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;The Terminal&lt;/h2&gt;
+&lt;p&gt;When reading the next section please remember &amp;#8216;With great power comes great responsibility&amp;#8217;. The terminal is your direct connection to your Mac. No buttons, menus or prompts in your way. You type, it does. So be careful what you type. I&amp;#8217;ll give you a couple commands in this section so you can navigate your way around your computer in your terminal. The terminal is used by a web developer to run servers, open files, download files and saving your work. Almost everything.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 1 &amp;#8211; Open Terminal:&lt;/strong&gt; Terminal should be located in Applications &amp;gt; Utilities. If you can&amp;#8217;t find it, there is always Spotlight to help you out.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 2 &amp;#8211; Where the crap am I?:&lt;/strong&gt; When you open your terminal you should see something like the image below. Probably not totally like mine (I&amp;#8217;ve got some fancy add-ons) but if you have some text then a box that reminds you of a 1995 &lt;span class=&quot;caps&quot;&gt;DOS&lt;/span&gt; machine, you&amp;#8217;re in the right place.&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://www.pozdena.org/snaps/11830ac412494db79c09e5ef1e41a683.png'/&gt;&lt;/p&gt;
+&lt;p&gt;To find out where you are, type &lt;code&gt;pwd&lt;/code&gt; then hit return. This will return the absolute path of where you are. This is most likely something like &amp;#8216;/Users/(your username)&amp;#8217;. This means you&amp;#8217;re in your user folder right now.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 3 &amp;#8211; What&amp;#8217;s in here?:&lt;/strong&gt; Okay we know what folder we&amp;#8217;re in. Now lets see what we got. Type &lt;code&gt;ls&lt;/code&gt; and hit return. This will return a list of the items in the folder.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 4 &amp;#8211; How do I move around?:&lt;/strong&gt; You probably don&amp;#8217;t want to stay in the same folder forever. Lets get a move-on. The &lt;code&gt;cd&lt;/code&gt; command is how we&amp;#8217;ll move around. You can pass cd either a relative path from where you are or an absolute path to get anywhere on your computer. To denote an absolute path you start your path with a &amp;#8216;/&amp;#8217;.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s try it out. You know what folders are in your current folder by the information &lt;code&gt;ls&lt;/code&gt; returned. Choose a folder and type &lt;code&gt;cd &lt;/code&gt; then the folder name and hit return. (Pro tip: if you can&amp;#8217;t remember the exact spelling or name of a path hit tab. It will try to autocomplete what you are typing). For example if I wanted to move into the Desktop folder I would type &lt;code&gt;cd Desktop&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now that you know how to get into a folder you need to know how to get out. By typing &lt;code&gt;cd ../&lt;/code&gt; you will go back to the folder you were just in. It moves you from the current directory to that directory&amp;#8217;s parent directory.&lt;/p&gt;
+&lt;p&gt;One really useful shortcut is &lt;code&gt;cd ~/&lt;/code&gt;. Enter that command and where ever you are it will take you directly back to your home folder.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 4.5 &amp;#8211; I&amp;#8217;m bored make it do something for me:&lt;/strong&gt; Okay okay&amp;#8230; The terminal is also a place where you can run &amp;#8216;utility&amp;#8217; programs or programs that have no user interface. Let&amp;#8217;s start off with a really simple one. Make sure your volume is at a decent level, then type &lt;code&gt;say hello there friend&lt;/code&gt; and hit return. You just ran a utility called &lt;code&gt;say&lt;/code&gt;. In the terminal you first write what program you&amp;#8217;d like to run, then the parameters you&amp;#8217;d like to pass the program. In this case we ran the program &lt;code&gt;say&lt;/code&gt; with the parameters &lt;code&gt;hello there friend&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step 5 &amp;#8211; Lets make something!:&lt;/strong&gt; Use &lt;code&gt;cd ~/Desktop&lt;/code&gt; to move into your Desktop. Type &lt;code&gt;ls&lt;/code&gt; again to list the item on your desktop. Look right? Good. We are now going to make a new folder. Type &lt;code&gt;mkdir awesome&lt;/code&gt; and hit return. This should create a new folder (aka directory) on your desktop. Go look at your desktop a new folder named &amp;#8220;awesome&amp;#8221; should waiting for you.&lt;/p&gt;
+&lt;p&gt;For reference here&amp;#8217;s a quick cheat sheet:&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;  pwd - Absolute path of where you are.                     &lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;  ls - List current directory's (aka folder's) contents.    &lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;  cd - Change directory aka move to path.                   &lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;  mkdir - Make directory aka make new folder.               &lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;  say - Make your computer talk funny.                      &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I think that&amp;#8217;s enough for now. Next up the best programming language ever: &lt;strong&gt;&lt;span class=&quot;caps&quot;&gt;RUBY&lt;/span&gt;&lt;/strong&gt; &lt;sup&gt;1&lt;/sup&gt;.&lt;/p&gt;
+&lt;h2&gt;Ruby&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.ruby-lang.org/en/&quot;&gt;Ruby&lt;/a&gt; is a programming language. More specifically Ruby is a dynamic, open source programming language with a focus on simplicity and productivity. It was created by a dude in Japan named Yukihiro Matsumoto aka &amp;#8216;Matz&amp;#8217;.&lt;/p&gt;
+&lt;p&gt;Ruby is a good language for beginners. It&amp;#8217;s a very expressive dynamic language which has a lot less overhead to learn compared to other languages like C or Java. It also doesn&amp;#8217;t need to be compiled. You can give your ruby code straight to the interpreter and it will run. And look how pretty it is. Below are two pieces of code that do the same thing. One written in C, the other in Ruby. Try to figure out what they do. Which one would you rather work with?&lt;/p&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt; &lt;strong&gt;C&lt;/strong&gt; &lt;/td&gt;
+		&lt;td&gt; &lt;strong&gt;Ruby&lt;/strong&gt; &lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;&lt;script src=&quot;http://gist.github.com/282406.js?file=gistfile1.h&quot;&gt;&lt;/script&gt;&lt;/td&gt;
+		&lt;td&gt;&lt;script src=&quot;http://gist.github.com/282407.js?file=gistfile1.rb&quot;&gt;&lt;/script&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;What&amp;#8217;s even better is you probably already have Ruby installed on your computer! Go back to Terminal and type &lt;code&gt;ruby -v&lt;/code&gt; and hit return. It should return something like:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ruby 1.8.7 (2008-08-11 patchlevel 72) [universal-darwin10.0]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;You also don&amp;#8217;t need any fancy program to develop in Ruby. All you need is a good text editor. For Ruby development, I would recommend getting something like TextMate &lt;a href=&quot;http://macromates.com/&quot;&gt;http://macromates.com/&lt;/a&gt; which is free for the first 30 days. But something as simple as Textedit would work.&lt;/p&gt;
+&lt;h3&gt;Let&amp;#8217;s program something already damn it&lt;/h3&gt;
+&lt;p&gt;Okay lets do something with Ruby! First things first, go back to Terminal. You should be somewhere where you don&amp;#8217;t mind making a couple files. If you&amp;#8217;re not &lt;code&gt;cd&lt;/code&gt; to a directory where you don&amp;#8217;t mind having some random files lying around. Then type &lt;code&gt;touch my_first_ruby.rb&lt;/code&gt; and hit return. You just created a file named &amp;#8216;my_first_ruby.rb&amp;#8217; in that folder. Now open that file with TextEdit or TextMate if you downloaded it.&lt;/p&gt;
+&lt;p&gt;You now have a canvas for your first creation. What will it do? How about complement you on how nice you are? Sounds good to me. Copy or enter the code you see below into your &amp;#8216;my_first_ruby.rb&amp;#8217; file and save it.&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/282497.js?file=my_first_ruby.rb&quot;&gt;&lt;/script&gt;&lt;p&gt;Take a minute and look through the code you just created. Look over each line and see if you can guess what it&amp;#8217;s going to do.&lt;/p&gt;
+&lt;p&gt;Now go back to your Terminal and type &lt;code&gt;ruby my_first_ruby.rb&lt;/code&gt; and hit return. You should get something like:&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://www.pozdena.org/snaps/f11b2b80d2c0e7713d727dfe9b80ae57.png'/&gt;&lt;/p&gt;
+&lt;p&gt;Now it&amp;#8217;s time to learn a bit of Ruby. You don&amp;#8217;t need me for that: Checkout &lt;a href=&quot;http://www.tryruby.org/&quot;&gt;http://www.tryruby.org/&lt;/a&gt; (make sure you&amp;#8217;re using Firefox not Safari or Chrome). It is an interactive tutorial on Ruby!&lt;/p&gt;
+&lt;h2&gt;Sinatra&lt;/h2&gt;
+&lt;p&gt;Sinatra is a very simple Ruby web framework. So simple in fact you can get a web server up and running in less than 6 lines of code:&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/282509.js?file=my_first_server.rb&quot;&gt;&lt;/script&gt;&lt;p&gt;Make a new file named &amp;#8216;my_first_server.rb&amp;#8217; on your desktop. You can use &lt;code&gt;touch my_first_server.rb&lt;/code&gt; to make it. Copy the code above into &amp;#8216;my_first_server.rb&amp;#8217; file you just created on your desktop and save it. Then type &lt;code&gt;ruby my_first_server.rb&lt;/code&gt; into Terminal and hit return. You should get an error like the one below:&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://www.pozdena.org/snaps/bc2fd4fb4c6182df83af27abe26ba861.png'/&gt;&lt;/p&gt;
+&lt;p&gt;This is because you haven&amp;#8217;t installed Sinatra yet. Ruby has libraries of code called &amp;#8216;gems&amp;#8217;. These libraries hold pre-made functionality for you. Sinatra boxes up a nice and clean way to make a simple web server with minimal effort. Luckily it&amp;#8217;s easy to install new gems. Back in Terminal type:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo gem install sinatra --source http://gemcutter.org/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Before you hit return, let me explain that command. The first word &lt;code&gt;sudo&lt;/code&gt; tells terminal to run the following command as the &amp;#8220;superuser&amp;#8221; or administrator of the computer. The rest of the command &lt;code&gt;gem install sinatra --source http://gemcutter.org/&lt;/code&gt; will install the library. It tries to locate a copy of the software on the ruby gem server (gemcutter.org), downloads it and installs it. Now hit return. It will ask you your password since you are running this command as a superuser. Type in your password (don&amp;#8217;t worry if you don&amp;#8217;t see anything) and hit return to install Sinatra.&lt;/p&gt;
+&lt;p&gt;If you run into any trouble you might need to update your &lt;code&gt;gem&lt;/code&gt; utility. To do that type the following into your Terminal and hit return:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo gem update --system&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Then try &lt;code&gt;ruby my_first_server.rb&lt;/code&gt; in Terminal once again. Your server should start correctly:&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://www.pozdena.org/snaps/3a02c909bbd2bd1ee74493e2412fd202.png'/&gt;&lt;/p&gt;
+&lt;p&gt;Sinatra just started up a server for you on port 4567. Make another window or tab and go to &lt;a href=&quot;http://0.0.0.0:4567/&quot;&gt;http://0.0.0.0:4567/&lt;/a&gt; (the 0.0.0.0 is your computer local address). When you visit &lt;a href=&quot;http://0.0.0.0:4567/&quot;&gt;http://0.0.0.0:4567/&lt;/a&gt; you should see your brand new web server responding back!&lt;/p&gt;
+&lt;p&gt;To use Sinatra you set &amp;#8220;routes&amp;#8221; by writing &lt;code&gt;get '(route)'&lt;/code&gt;. In our example we set the route &amp;#8220;/&amp;#8221;, which is the root route to our server. Once you set a route you need to set what Sinatra will return when someone visits that route. Sinatra will return the last line of the code block declared after the route. In the example above the last line in our code block was &amp;#8216;Well hello there&amp;#8217;. So when someone visits &lt;a href=&quot;http://0.0.0.0:4567/&quot;&gt;http://0.0.0.0:4567/&lt;/a&gt; it will return &amp;#8216;Well hello there&amp;#8217; to them.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s set some more routes. Replace the code in &amp;#8216;my_first_server.rb&amp;#8217; with the code below and save it. Stop your server in Terminal by holding down &lt;span class=&quot;caps&quot;&gt;CTRL&lt;/span&gt;-C and restart your server by typing &lt;code&gt;ruby my_first_server.rb&lt;/code&gt; in Terminal once again.&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/283529.js?file=my_first_server.rb&quot;&gt;&lt;/script&gt;&lt;p&gt;Now trying going to &lt;a href=&quot;http://0.0.0.0:4567/what_time_is_it&quot;&gt;http://0.0.0.0:4567/what_time_is_it&lt;/a&gt; and &lt;a href=&quot;http://0.0.0.0:4567/super/secret/route&quot;&gt;http://0.0.0.0:4567/super/secret/route&lt;/a&gt; in a web browser. In the first route (&lt;a href=&quot;http://0.0.0.0:4567/what_time_is_it&quot;&gt;http://0.0.0.0:4567/what_time_is_it&lt;/a&gt;) we are generating what the server will return dynamically by getting the current time &lt;code&gt;Time.now&lt;/code&gt; converting it to a string &lt;code&gt;.to_s&lt;/code&gt; and appending it to the string &amp;#8217;The current time is &amp;#8217;. Now when you go to &lt;a href=&quot;http://0.0.0.0:4567/what_time_is_it&quot;&gt;http://0.0.0.0:4567/what_time_is_it&lt;/a&gt; you can see what time it is.&lt;/p&gt;
+&lt;p&gt;Our Sinatra server doesn&amp;#8217;t return valid &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; yet. So let&amp;#8217;s take care of that little problem. To do that we&amp;#8217;ll use files called &lt;span class=&quot;caps&quot;&gt;ERB&lt;/span&gt; template views. These are templates that will render down to &lt;span class=&quot;caps&quot;&gt;HTML&lt;/span&gt; but allow us to add dynamic elements into them. To do this we&amp;#8217;ll have to make some new files and folders. Below is a screen shot of the files and folders you need to create.&lt;/p&gt;
+&lt;p&gt;&lt;img src='http://www.pozdena.org/snaps/0e7c9988d1cf000f370deb7527462827.png'/&gt;&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/44f1e3efa5121a55b126.js?file=example2.html&quot;&gt;&lt;/script&gt;&lt;p&gt;Create the files you see above and copy the code from &lt;a href='http://gist.github.com/raw/44f1e3efa5121a55b126/995ae46be3dc0f896c33d003c3f7fa8cf3a3f283/sinatra_server.rb' target='_blank'&gt;sinatra_server.rb&lt;/a&gt; and &lt;a href='http://gist.github.com/raw/44f1e3efa5121a55b126/a9a09de84b5f22901c3c967065744d4847e35e1f/index.erb' target='_blank'&gt;index.html&lt;/a&gt; into their respective files. Now navigate you way into that folder in Terminal and run your Sinatra server by runing &lt;code&gt;ruby sinatra_server.rb&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Again navigate your way to &lt;a href=&quot;http://0.0.0.0:4567/&quot;&gt;http://0.0.0.0:4567/&lt;/a&gt; . Hit reload a couple times. You&amp;#8217;ll see &amp;#8216;the coolest number in the world&amp;#8217; switch around. This is because your server is evaluating the index.erb file every time the page is loaded. Go look back at the index.erb file. You&amp;#8217;ll see:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;%= rand(1000) %&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Anything you put between &lt;code&gt;&amp;lt;%=&lt;/code&gt; and &lt;code&gt;%&amp;gt;&lt;/code&gt; will be evaluated. You could replace that with the current time, something you pull from a web resource or the user&amp;#8217;s current ip.&lt;/p&gt;
+&lt;p&gt;If you&amp;#8217;d like to learn more about Sinatra check out: &lt;a href=&quot;http://www.sinatrarb.com&quot;&gt;http://www.sinatrarb.com&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The goal of this article was for you to get a feel of what tools a Ruby developer works with. These are just the very basics but gives you a glimpse into the world of web development. If you liked what you saw congratulations there is the exciting world of web development waiting for you. If you didn&amp;#8217;t, well I&amp;#8217;m sorry, but at least now you know a little more about the web.&lt;/p&gt;
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+&lt;h3&gt;Notes&lt;/h3&gt;
+&lt;p class=&quot;footnote&quot; id=&quot;fn1&quot;&gt;&lt;a href=&quot;#fnr1&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Okay, Ruby might not be the best programming language ever. But I still love it.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Almaz - A rack middleware that logs to Redis</title>
+   <link href="http://blog.jpoz.net/2009/11/11/Almaz.html"/>
+   <updated>2009-11-11T00:00:00-08:00</updated>
+   <id>http://blog.jpoz.net/2009/11/11/Almaz</id>
+   <content type="html">&lt;h1&gt;Almaz&lt;/h1&gt;
+&lt;p&gt;You know what really grinds my gears: looking through log files. Especially when you have 3 slices running all having their own separate logs! Grrrrr. Introducing Almaz!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://github.com/jpoz/almaz&quot;&gt;http://github.com/jpoz/almaz&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;An exact copy of the 1960s Soviet Union spy satellite, written in Ruby! Almaz has two parts: Almaz::Capture and Almaz::View.&lt;/p&gt;
+&lt;p&gt;Almaz::Capture:&lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;Counts all requests going to your server.&lt;/li&gt;
+	&lt;li&gt;Records the &lt;span class=&quot;caps&quot;&gt;URL&lt;/span&gt;.&lt;/li&gt;
+	&lt;li&gt;Records the params.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Almaz::View:&lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;Show you the statistics.&lt;/li&gt;
+	&lt;li&gt;Provides basic authentication.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;All the data is stored in Redis! And all the code for Almaz is in one file (including the view to show the statistics).&lt;/p&gt;
+&lt;h2&gt;Example:&lt;/h2&gt;
+&lt;p&gt;Here&amp;#8217;s a super basic Sinatra app. &lt;a href=&quot;http://github.com/jpoz/almaz/blob/master/almaz.rb&quot;&gt;Almaz&lt;/a&gt; has been copied into the app&amp;#8217;s directory&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/232169.js&quot;&gt;&lt;/script&gt;&lt;h2&gt;Usage:&lt;/h2&gt;
+&lt;p&gt;Let your users run wild. Almaz will be watching everything, even request that you don&amp;#8217;t have a route for. Then go to yoursite.com/stats, type in your username and password and you can see all the stats for your site.&lt;/p&gt;
+&lt;h3&gt;Notes:&lt;/h3&gt;
+&lt;p&gt;This has not been performance tested or scaled up in any means. So don&amp;#8217;t use it in production&amp;#8230; yet :-)&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Ruby square root</title>
+   <link href="http://blog.jpoz.net/2009/10/15/sqrt.html"/>
+   <updated>2009-10-15T00:00:00-07:00</updated>
+   <id>http://blog.jpoz.net/2009/10/15/sqrt</id>
+   <content type="html">&lt;p&gt;Today whoahbot &lt;a href=&quot;http://www.whoahbot.com/&quot;&gt;link&lt;/a&gt; challenged us to make our own square root function without using the standard lib. This is what Max and I came up with:&lt;/p&gt;
+&lt;p&gt;Code!&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/211290.js&quot;&gt;&lt;/script&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>String#to_leet</title>
+   <link href="http://blog.jpoz.net/2009/09/29/string-to-leet.html"/>
+   <updated>2009-09-29T00:00:00-07:00</updated>
+   <id>http://blog.jpoz.net/2009/09/29/string-to-leet</id>
+   <content type="html">&lt;p&gt;Yesterday I didn&amp;#8217;t know what 1337 meant. Two things came from this. One, my coworker started a blog about me slowly becoming a nerd: &lt;a href=&quot;http://nerdificate.tumblr.com/&quot;&gt;http://nerdificate.tumblr.com/&lt;/a&gt; and two, I made a ruby string .to_leet function so I can talk in leet all the time!&lt;/p&gt;
+&lt;p&gt;Code!&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/197001.js&quot;&gt;&lt;/script&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Heroku + Sinatra + Gmail</title>
+   <link href="http://blog.jpoz.net/2009/09/02/gmail-heroku-sinatra.html"/>
+   <updated>2009-09-02T00:00:00-07:00</updated>
+   <id>http://blog.jpoz.net/2009/09/02/gmail-heroku-sinatra</id>
+   <content type="html">&lt;p&gt;A friend asked me recently if I could build him a super simple web app that could email him. I said &amp;#8216;SUuuuuuurrre&amp;#8217; that&amp;#8217;ll be easy I&amp;#8217;ll throw it on heroku and it will be awesome! I forgot using gmail is incredibly annoying. Took me way too long to figure out the problem. It&amp;#8217;s that same Net::&lt;span class=&quot;caps&quot;&gt;SMTP&lt;/span&gt; error that&amp;#8217;s been hacked around a ton of times. I copied one such hack and added in Pony:&lt;/p&gt;
+&lt;p&gt;pony_gmail.rb &amp;#8594; &lt;a href=&quot;http://gist.github.com/179967&quot;&gt;http://gist.github.com/179967&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now in a post(probably) add a pony line that&amp;#8217;s configured to use smtp:&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/179978.js&quot;&gt;&lt;/script&gt;&lt;p&gt;The only thing left is to add pony to your .gems file and you are ready to email people from Sinatra on Heroku using gmail!!&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/180382.js&quot;&gt;&lt;/script&gt;&lt;p&gt;I created a fun app to annoy one of my coworkers. If you&amp;#8217;d like to send my coworker and email (to all his addresses) click the link below!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://emailmax.heroku.com/&quot;&gt;http://emailmax.heroku.com/&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Ruby Gradient Generator</title>
+   <link href="http://blog.jpoz.net/2009/07/27/ruby-gradients.html"/>
+   <updated>2009-07-27T00:00:00-07:00</updated>
+   <id>http://blog.jpoz.net/2009/07/27/ruby-gradients</id>
+   <content type="html">&lt;p&gt;In the last couple of weeks I&amp;#8217;ve been playing around with two things: &lt;a href=&quot;http://heroku.com/&quot;&gt;Heroku&lt;/a&gt; and &lt;a href=&quot;http://seattlerb.rubyforge.org/png/&quot;&gt;SeattleRb&amp;#8217;s &lt;span class=&quot;caps&quot;&gt;PNG&lt;/span&gt; gem&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://heroku.com/&quot;&gt;Heroku&lt;/a&gt; is fun, easy to use and really really powerful (if you got the cash to pay for it). I&amp;#8217;ve got 4 apps on Heroku now and together they took less effort to deploy then one rails app with Dreamhost (by alot!). There are tons of good blog posts about Heroku if you don&amp;#8217;t know what it is ( &lt;a href=&quot;http://deadprogrammersociety.blogspot.com/2009/04/heroku-why-havent-i-been-using-you-till.html&quot;&gt;link&lt;/a&gt;, &lt;a href=&quot;http://blog.ngriffith.com/2008/11/getting-started-with-heroku-or-ruby-on-rails-in-the-cloud/&quot;&gt;link&lt;/a&gt; ).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://seattlerb.rubyforge.org/png/&quot;&gt;SeattleRb&amp;#8217;s &lt;span class=&quot;caps&quot;&gt;PNG&lt;/span&gt; gem&lt;/a&gt; is a Ruby only png creator. They just released v1.2.0 and if you haven&amp;#8217;t checked it out you should. I think it&amp;#8217;s a great project. I don&amp;#8217;t want to have to install ImageMagick to do some simple stuff with images. So I thought, why not combine the two and make a little Ruby gradient generator!&lt;/p&gt;
+&lt;p&gt;It turned out to be even easier than I thought, thanks to both the &lt;span class=&quot;caps&quot;&gt;PNG&lt;/span&gt; gem and Heroku.&lt;/p&gt;
+&lt;h2&gt;Step 1: Make a &lt;span class=&quot;caps&quot;&gt;PNG&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;SeattleRb&amp;#8217;s &lt;span class=&quot;caps&quot;&gt;PNG&lt;/span&gt; gem is pretty basic right now. You can&amp;#8217;t even draw any shapes, your only tools are a line and point. But that&amp;#8217;s okay because that&amp;#8217;s all we need. Below is the class I came up with to create nice smooth gradients. It takes a height, width, and two colors. Iterates over the height and width while slowly blending the two colors together. It has two output options: save to a file and &amp;#8220;to_blob&amp;#8221;. We&amp;#8217;ll be using to_blob since you can&amp;#8217;t save any files to Heroku.&lt;/p&gt;
+&lt;p&gt;png_gradient.rb&lt;br /&gt;
+&lt;script src=&quot;http://gist.github.com/156966.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;h2&gt;Step 2: Make a web app&lt;/h2&gt;
+&lt;p&gt;Amazingly step one was the hard part. Setting up the web app is pretty easy. I wrote mine to respond to the &lt;span class=&quot;caps&quot;&gt;API&lt;/span&gt; of (:height)/(:width)/(:color1)/(:color2)/output.png. All it took was one route with Sinatra, being sure to set the &amp;#8216;Content-Type&amp;#8217; header to &amp;#8216;image/png&amp;#8217;. I also made mine respond to an html request so I could have a slick ajax action with a link to download the png.&lt;/p&gt;
+&lt;p&gt;main.rb&lt;br /&gt;
+&lt;script src=&quot;http://gist.github.com/157538.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;h2&gt;Step 3: Enjoy&lt;/h2&gt;
+&lt;p&gt;Heroku made deployment a breeze. I even add some custom domains. You can checkout the project at:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://gradient.jpoz.net&quot;&gt;http://gradient.jpoz.net&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Or checkout the source at:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://github.com/jpoz/gradient/tree/master&quot;&gt;http://github.com/jpoz/gradient/tree/master&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Apple Push Notification Service Gem</title>
+   <link href="http://blog.jpoz.net/2009/07/14/APNS-gem.html"/>
+   <updated>2009-07-14T00:00:00-07:00</updated>
+   <id>http://blog.jpoz.net/2009/07/14/APNS-gem</id>
+   <content type="html">&lt;p&gt;Woo hoo I&amp;#8217;ve written my first gem! Over the last couple of months I&amp;#8217;ve been playing around with Apple&amp;#8217;s new &lt;strong&gt;A&lt;/strong&gt;pple &lt;strong&gt;P&lt;/strong&gt;ush &lt;strong&gt;N&lt;/strong&gt;otification &lt;strong&gt;S&lt;/strong&gt;ervice (&lt;strong&gt;&lt;span class=&quot;caps&quot;&gt;APNS&lt;/span&gt;&lt;/strong&gt;). I&amp;#8217;ve written up a little gem to incapsulate the main functionality of &lt;span class=&quot;caps&quot;&gt;APNS&lt;/span&gt;. I named it &lt;span class=&quot;caps&quot;&gt;APNS&lt;/span&gt; for obvious reasons and put up the &lt;a href=&quot;http://github.com/jpoz/APNS/&quot;&gt;code&lt;/a&gt; on github. It&amp;#8217;s easy to install using github&amp;#8217;s gem server:&lt;/p&gt;
+&lt;h2&gt;Installation:&lt;/h2&gt;
+&lt;p style=&quot;padding-left:1em;&quot;&gt;&lt;code&gt;gem sources -a http://gems.github.com&lt;/code&gt;&lt;br /&gt;
+ &lt;code&gt;sudo gem install jpoz-apns&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;Setup:&lt;/h2&gt;
+&lt;p&gt;All the basic setup is done on the class. &lt;span class=&quot;caps&quot;&gt;APNS&lt;/span&gt; has 4 configuration variables: host, pem, pass and port. For development you probably only have to set 1, maybe 2 of these variables to get going. &lt;span class=&quot;caps&quot;&gt;APNS&lt;/span&gt;.host&amp;#8217;s default is Apple&amp;#8217;s development server and the port is the same across development and production. Here&amp;#8217;s an example to setup for a &lt;strong&gt;production&lt;/strong&gt; environment. For development you don&amp;#8217;t need to set host.&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/145180.js&quot;&gt;&lt;/script&gt;&lt;h2&gt;Example:&lt;/h2&gt;
+&lt;p&gt;Notifications can be set two ways: just text, or as a hash of attributes.&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/145181.js&quot;&gt;&lt;/script&gt;&lt;h2&gt;Send other info along with aps&lt;/h2&gt;
+&lt;p&gt;You can send other application specific information as well.&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/145182.js&quot;&gt;&lt;/script&gt;&lt;p&gt;This will add the other hash to the same level as the aps hash:&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/145183.js&quot;&gt;&lt;/script&gt;&lt;h2&gt;Getting your iPhone&amp;#8217;s device token&lt;/h2&gt;
+&lt;p&gt;After you setup push notification for your application with Apple. You need to ask Apple for you application specific device token.&lt;/p&gt;
+&lt;p&gt;ApplicationAppDelegate.m&lt;br /&gt;
+&lt;script src=&quot;http://gist.github.com/145185.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Testing run_later in Merb with RSpec</title>
+   <link href="http://blog.jpoz.net/2009/06/29/Testing-run_later.html"/>
+   <updated>2009-06-29T00:00:00-07:00</updated>
+   <id>http://blog.jpoz.net/2009/06/29/Testing-run_later</id>
+   <content type="html">&lt;p&gt;I couldn&amp;#8217;t find any posts about how to make sure the code I&amp;#8217;m running inside my run_later block is getting called. Here&amp;#8217;s the situation.&lt;/p&gt;
+&lt;p&gt;app/controllers/awesome.rb&lt;br /&gt;
+&lt;script src=&quot;http://gist.github.com/137817.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;app/controllers/awesome_spec.rb&lt;br /&gt;
+&lt;script src=&quot;http://gist.github.com/137818.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;This will fail, because Awesome.import_massive_junk just gets added to the work_queue and hasn&amp;#8217;t bee run in time for the test to finish and fail. You could just put &amp;#8216;sleep 1&amp;#8217; in there, but that would just be stupid. Instead I found just calling the proc in the work_queue does the trick:&lt;/p&gt;
+&lt;p&gt;app/controllers/awesome_spec.rb&lt;br /&gt;
+&lt;script src=&quot;http://gist.github.com/137819.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;Hope this helps someone out. If you find a better way let me know!&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>iPhone Simulator (IndigoDevice) Internal Error</title>
+   <link href="http://blog.jpoz.net/2009/05/24/iPhone-simulator-internal-error.html"/>
+   <updated>2009-05-24T00:00:00-07:00</updated>
+   <id>http://blog.jpoz.net/2009/05/24/iPhone-simulator-internal-error</id>
+   <content type="html">&lt;p&gt;If you ever get the following error:&lt;/p&gt;
+&lt;p&gt;&amp;#8220;Internal Error&lt;br /&gt;
+File:	/SourceCache/IndigoDebuggingPlugin/IndigoDebuggingPlugin-31/IndigoDevice/XCiPhoneSimulatorDevice.m&lt;br /&gt;
+Line:	265&lt;br /&gt;
+Object:	&lt;XCiPhoneSimulatorDevice:0x027cf3d0&gt;&lt;br /&gt;
+Method:	_launchSimulatedExecutable:&lt;/p&gt;
+&lt;p&gt;Assertion failed: nil == _currentSimulatorSession&amp;quot;&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ll save you about 2 hours of your time. There are some complicated solutions to this problem (&lt;a href=&quot;http://discussions.apple.com/thread.jspa?messageID=8376375&quot;&gt;here&lt;/a&gt;). But all you need to do is, quit xcode/iphone simulator, go into your (username)/Library/Application Support/ and delete the iPhone Simulator folder. Restart xcode and build your app. Worked for me. So pissed that wasted 2 hours of my life.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>UIGlassButton Example</title>
+   <link href="http://blog.jpoz.net/2009/05/20/uiglassbutton.html"/>
+   <updated>2009-05-20T00:00:00-07:00</updated>
+   <id>http://blog.jpoz.net/2009/05/20/uiglassbutton</id>
+   <content type="html">&lt;p&gt;UIGlassButtons are awesome. To bad Apple doesn&amp;#8217;t want us to know about them. They&amp;#8217;re slick buttons that inherit from the UIButton class. You use it pretty much the same way you&amp;#8217;d use a UIButton, but since Apple hasn&amp;#8217;t included it in any header files you&amp;#8217;ll have to declare the class yourself. Below is a short example of how to create a UIGlassButton. Enjoy!&lt;/p&gt;
+&lt;script src=&quot;http://gist.github.com/114938.js&quot;&gt;&lt;/script&gt;&lt;p&gt;Some discussion:&lt;/p&gt;
+&lt;p&gt;The only warning I should put on this class is that some have said using the class will make sure that your app won&amp;#8217;t make it through the review process. I don&amp;#8217;t know if that&amp;#8217;s true or not, but if my app makes it through I&amp;#8217;ll update this post.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>imagePickerController:didFinishPickingImage:editingInfo: DEPRECATED</title>
+   <link href="http://blog.jpoz.net/2009/03/20/the_deprecation_of_UIImagePIcker.html"/>
+   <updated>2009-03-20T00:00:00-07:00</updated>
+   <id>http://blog.jpoz.net/2009/03/20/the_deprecation_of_UIImagePIcker</id>
+   <content type="html">&lt;p&gt;Holly crap iPhone 3.0 why are you so frustrating! It took me way too long to figure out why you deprecated a function!&lt;/p&gt;
+&lt;p&gt;While working on my app with the new 3.0 &lt;span class=&quot;caps&quot;&gt;SDK&lt;/span&gt; I found a function I was using (imagePickerController:didFinishPickingImage:editingInfo:) on the UIImagePickerControllerDelegate was deprecated&amp;#8230; I thought, well there must be a replacement. I searched in the documentation and found nothing. The only method left on the UIImagePickerControllerDelegate was for cancel! It took me reading through the &lt;span class=&quot;caps&quot;&gt;API&lt;/span&gt; diff to figure out that Apple just hasn&amp;#8217;t written the documentation for it replacement method yet!&lt;/p&gt;
+&lt;p&gt;-[UIImagePickerControllerDelegate imagePickerController:didFinishPickingMediaWithInfo:]&lt;/p&gt;
+&lt;p&gt;There is literally no documentation for this method, no link in the &lt;span class=&quot;caps&quot;&gt;API&lt;/span&gt; diff&amp;#8230; no nothing. So I have no idea how to use it. Luckily the old function is still available. But interesting that it&amp;#8217;s now &amp;#8216;Media&amp;#8217;. Maybe video is coming soon. OOOooo&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Git post commit hooks with Jekyll</title>
+   <link href="http://blog.jpoz.net/2009/03/05/jekyll_blog_hooks.html"/>
+   <updated>2009-03-05T00:00:00-08:00</updated>
+   <id>http://blog.jpoz.net/2009/03/05/jekyll_blog_hooks</id>
+   <content type="html">&lt;p&gt;Creating a Jekyll blog is both fun and easy. I was amazed how easy it was to get started and get something up and running in a couple minutes!&lt;/p&gt;
+&lt;p&gt;If you don&amp;#8217;t already have a Jekyll blog you can get started here: &lt;a href=&quot;http://github.com/mojombo/jekyll/tree/master&quot;&gt;github.com/mojombo/jekyll&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After I got something I was happy with, I wanted to make it super easy to deploy my blog. I created a post commit hook so every time I commit my blog it would publish it up to my site.&lt;/p&gt;
+&lt;p&gt;Adding the following lines of code to .git/hooks/post-commit and making the file executable did the trick!&lt;/p&gt;
+&lt;p&gt;Liquid error: undefined method `join&amp;#8217; for #&lt;String:0x007f92d40afd20&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Gruff Error: Magick::ImageMagickError: unable font</title>
+   <link href="http://blog.jpoz.net/2009/02/22/gruff_error.html"/>
+   <updated>2009-02-22T00:00:00-08:00</updated>
+   <id>http://blog.jpoz.net/2009/02/22/gruff_error</id>
+   <content type="html">&lt;p&gt;Ahhh this took forever to figure out…&lt;/p&gt;
+&lt;p&gt;First find out which fonts you can use:&lt;/p&gt;
+&lt;p&gt;Liquid error: undefined method `join&amp;#8217; for &lt;a href=&quot;String&quot;&gt;\njpoz$ identify -list font\n&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Find one you like, then set the font path:&lt;/p&gt;
+&lt;p&gt;Liquid error: undefined method `join&amp;#8217; for #&lt;String:0x007f92d40bd6c8&gt;&lt;/p&gt;
+&lt;p&gt;Stupid freakin’ ImageMagick&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Tokyo Cabinet benchmarking</title>
+   <link href="http://blog.jpoz.net/2009/02/18/tk_cabinet_fun2.html"/>
+   <updated>2009-02-18T00:00:00-08:00</updated>
+   <id>http://blog.jpoz.net/2009/02/18/tk_cabinet_fun2</id>
+   <content type="html">&lt;p class=&quot;date&quot;&gt;18 Feb 2009&lt;/p&gt;
+&lt;p&gt;Tonight I did a little bit more hacking with Tokyo Cabinet. For a current project I’m looking for a super fast ultra light db that I can quickly dump CSVs into and quickly run some simple queries to get data out. And I thought Tokyo Cabinet would be a great candidate. So to be sure, I decided to put Tokyo Cabinet vs. Rufus-Tokyo vs. DataMapper (using do_posgres).&lt;/p&gt;
+&lt;p&gt;The result were a little surprising. Tokyo Cabinets B-tree database engine is amazingly fast, eating 10,000 inserts in less than 0.15 seconds. The hash database engine came in a close second taking a little less than half a second for the same 10,000 inserts. And coming 91 times slower than the B-tree and 24 times slower than the hash is DataMapper with a little over 11 seconds.&lt;/p&gt;
+&lt;p&gt;That’s all well and good and I assumed I would be getting just about the same results when I tried to pull data out, but Rufus and DataMapper switched. Although Tokyo Cabinet’s B-tree database engine was still the fastest, it’s hash tree engine was now slower than Datamapper.&lt;/p&gt;
+&lt;p&gt;This came as quite a disappointment. Tokyo Cabinet is so easy to use and I really loved how the databases could be so easily created and destroyed. I can’t use the B-tree engine because it just won’t allow me to do the queries I want to do and I can’t justify using a database that is 43 times slower than it’s competitor. I’m hoping another &lt;span class=&quot;caps&quot;&gt;API&lt;/span&gt; (maybe the dm-tokyo-cabinet-adapter) will be faster, but I think that’s enough benchmarking for one night.&lt;/p&gt;
+&lt;p&gt;The details below:&lt;/p&gt;
+&lt;p&gt;Insert 10,000 records from &lt;span class=&quot;caps&quot;&gt;CSV&lt;/span&gt; (using FasterCSV)&lt;/p&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt; &lt;/td&gt;
+		&lt;td&gt; user &lt;/td&gt;
+		&lt;td&gt; system &lt;/td&gt;
+		&lt;td&gt; total &lt;/td&gt;
+		&lt;td&gt; real &lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt; Tokyo: B-tree &lt;/td&gt;
+		&lt;td&gt; 0.120000 &lt;/td&gt;
+		&lt;td&gt; 0.020000 &lt;/td&gt;
+		&lt;td&gt; 0.140000 &lt;/td&gt;
+		&lt;td&gt; (0.142824) &lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt; Tokyo: Rufus &lt;/td&gt;
+		&lt;td&gt; 0.450000 &lt;/td&gt;
+		&lt;td&gt; 0.110000 &lt;/td&gt;
+		&lt;td&gt; 0.560000 &lt;/td&gt;
+		&lt;td&gt; (0.572258) &lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt; DataMapper: Postgres &lt;/td&gt;
+		&lt;td&gt; 11.230000 &lt;/td&gt;
+		&lt;td&gt; 0.110000 &lt;/td&gt;
+		&lt;td&gt; 12.210000 &lt;/td&gt;
+		&lt;td&gt; (21.524662) &lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Get 100&lt;/p&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt; &lt;/td&gt;
+		&lt;td&gt;                     user    &lt;/td&gt;
+		&lt;td&gt;   system   &lt;/td&gt;
+		&lt;td&gt;  total   &lt;/td&gt;
+		&lt;td&gt;    real &lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt; Tokyo: B-tree       &lt;/td&gt;
+		&lt;td&gt;  0.000000 &lt;/td&gt;
+		&lt;td&gt;  0.000000 &lt;/td&gt;
+		&lt;td&gt;  0.000000 &lt;/td&gt;
+		&lt;td&gt; (  0.001434) &lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt; Tokyo: Rufus        &lt;/td&gt;
+		&lt;td&gt;  1.730000 &lt;/td&gt;
+		&lt;td&gt;  0.010000 &lt;/td&gt;
+		&lt;td&gt;  1.740000 &lt;/td&gt;
+		&lt;td&gt; (  1.771523) &lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt; DataMapper: Postgres &lt;/td&gt;
+		&lt;td&gt; 0.040000 &lt;/td&gt;
+		&lt;td&gt;  0.010000 &lt;/td&gt;
+		&lt;td&gt;  0.050000 &lt;/td&gt;
+		&lt;td&gt; (  0.268635) &lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Code used for beachmarking:&lt;/p&gt;
+&lt;p&gt;Liquid error: undefined method `join&amp;#8217; for #&lt;String:0x007f92d40f27b0&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Tokyo Cabinet and Rack fun!</title>
+   <link href="http://blog.jpoz.net/2009/02/17/tk_cabinet_fun.html"/>
+   <updated>2009-02-17T00:00:00-08:00</updated>
+   <id>http://blog.jpoz.net/2009/02/17/tk_cabinet_fun</id>
+   <content type="html">&lt;p class=&quot;date&quot;&gt;17 Feb 2009&lt;/p&gt;
+&lt;p&gt;I started playing around with Tokyo Cabinet and Rufus-Tokyo tonight. I have to say I was pretty impressed. Tokyo Cabinet (with the help of rufus-tokyo) is so dead easy to use. It took me about an hour to install, learn and get a dead simple rack app up and running.&lt;/p&gt;
+&lt;p&gt;I made a quick and dirty logger:&lt;/p&gt;
+&lt;p&gt;Liquid error: undefined method `join&amp;#8217; for #&lt;String:0x007f92d4120520&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Hash.to_url_params (nested)</title>
+   <link href="http://blog.jpoz.net/2009/01/30/hast_to_url_params.html"/>
+   <updated>2009-01-30T00:00:00-08:00</updated>
+   <id>http://blog.jpoz.net/2009/01/30/hast_to_url_params</id>
+   <content type="html">&lt;p&gt;Google couldn’t find me a good one. So I made this one:&lt;/p&gt;
+&lt;p&gt;Liquid error: undefined method `join&amp;#8217; for #&lt;String:0x007f92d412f9a8&gt;&lt;/p&gt;
+&lt;p&gt;Will transform:&lt;/p&gt;
+&lt;p&gt;Liquid error: undefined method `join&amp;#8217; for &amp;#8220;\n  {:person =&amp;gt;{:name =&amp;gt; &amp;#8216;Bobby&amp;#8217;, :age=&amp;gt;&amp;#8217;28&amp;#8217;}}\n&amp;#8221;:String&lt;/p&gt;
+&lt;p&gt;Into:&lt;/p&gt;
+&lt;p&gt;Liquid error: undefined method `join&amp;#8217; for &lt;a href=&quot;String&quot;&gt;\n  person[name]=Bobby&amp;amp;person[age]=28\n&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ 
+</feed>
