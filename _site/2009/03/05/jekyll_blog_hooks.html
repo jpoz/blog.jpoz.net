@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/pozdena.css" type="text/css" />
 
+  <link rel="stylesheet" href="/css/syntax.css">
 	<script src="js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 <body>
@@ -44,7 +45,12 @@
 <p>If you don&#8217;t already have a Jekyll blog you can get started here: <a href="http://github.com/mojombo/jekyll/tree/master">github.com/mojombo/jekyll</a></p>
 <p>After I got something I was happy with, I wanted to make it super easy to deploy my blog. I created a post commit hook so every time I commit my blog it would publish it up to my site.</p>
 <p>Adding the following lines of code to .git/hooks/post-commit and making the file executable did the trick!</p>
-<p>Liquid error: undefined method `join&#8217; for #<String:0x007f92d40afd20></p>
+<div class="highlight"><pre><code class="bash"><span class="nb">echo</span> <span class="s2">&quot;--- Creating site ---&quot;</span>
+jekyll --pygments
+<span class="nb">echo</span> <span class="s2">&quot;--- Uploading site ---&quot;</span>
+scp -r _site/* <span class="o">(</span>username<span class="o">)</span>@<span class="o">(</span>example.com<span class="o">)</span>:directory/
+</code></pre>
+</div>
 </div>
 
 <script type="text/javascript">

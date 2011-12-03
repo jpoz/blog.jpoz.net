@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/pozdena.css" type="text/css" />
 
+  <link rel="stylesheet" href="/css/syntax.css">
 	<script src="js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 <body>
@@ -42,9 +43,14 @@
 <div id="post">
   <p>Ahhh this took forever to figure out…</p>
 <p>First find out which fonts you can use:</p>
-<p>Liquid error: undefined method `join&#8217; for <a href="String">\njpoz$ identify -list font\n</a></p>
+<div class="highlight"><pre><code class="bash">jpoz<span class="nv">$ </span>identify -list font
+</code></pre>
+</div>
 <p>Find one you like, then set the font path:</p>
-<p>Liquid error: undefined method `join&#8217; for #<String:0x007f92d40bd6c8></p>
+<div class="highlight"><pre><code class="ruby"><span class="n">g</span> <span class="o">=</span> <span class="no">Gruff</span><span class="o">::</span><span class="no">Line</span><span class="o">.</span><span class="n">new</span>
+<span class="n">g</span><span class="o">.</span><span class="n">font</span>  <span class="o">=</span> <span class="s2">&quot;/Library/Fonts/Arial Bold.ttf&quot;</span>
+</code></pre>
+</div>
 <p>Stupid freakin’ ImageMagick</p>
 </div>
 

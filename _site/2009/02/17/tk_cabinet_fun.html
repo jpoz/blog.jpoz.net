@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/pozdena.css" type="text/css" />
 
+  <link rel="stylesheet" href="/css/syntax.css">
 	<script src="js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 <body>
@@ -43,7 +44,39 @@
   <p class="date">17 Feb 2009</p>
 <p>I started playing around with Tokyo Cabinet and Rufus-Tokyo tonight. I have to say I was pretty impressed. Tokyo Cabinet (with the help of rufus-tokyo) is so dead easy to use. It took me about an hour to install, learn and get a dead simple rack app up and running.</p>
 <p>I made a quick and dirty logger:</p>
-<p>Liquid error: undefined method `join&#8217; for #<String:0x007f92d4120520></p>
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>  
+<span class="nb">require</span> <span class="s1">&#39;rack&#39;</span>  
+<span class="nb">require</span> <span class="s1">&#39;rufus/tokyo&#39;</span>  
+  
+<span class="k">class</span> <span class="nc">Logger</span>  
+  
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  
+    <span class="vi">@t</span> <span class="o">=</span> <span class="n">t</span>  
+  <span class="k">end</span>  
+  
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>  
+    <span class="vi">@t</span><span class="o">[</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">to_i</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;time&#39;</span> <span class="o">=&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">to_i</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span> <span class="o">=&gt;</span> <span class="n">env</span><span class="o">.</span><span class="n">inspect</span> <span class="p">}</span>  
+    <span class="n">array</span> <span class="o">=</span> <span class="vi">@t</span><span class="o">.</span><span class="n">query</span> <span class="p">{</span> <span class="o">|</span><span class="n">q</span><span class="o">|</span>  
+      <span class="n">q</span><span class="o">.</span><span class="n">order_by</span> <span class="s1">&#39;time&#39;</span>  
+    <span class="p">}</span>  
+    <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;The data:&quot;</span>  
+    <span class="n">array</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">d</span><span class="o">|</span> <span class="n">output</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;br/&gt;</span><span class="si">#{</span><span class="n">d</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>  
+    <span class="o">[</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;text/html&quot;</span><span class="p">},</span> <span class="n">output</span><span class="o">]</span>  
+  <span class="k">end</span>  
+  
+<span class="k">end</span>  
+  
+<span class="n">rackApp</span> <span class="o">=</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Builder</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>  
+  
+  <span class="n">map</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>  
+    <span class="n">run</span> <span class="no">Logger</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">Rufus</span><span class="o">::</span><span class="no">Tokyo</span><span class="o">::</span><span class="no">Table</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;visitors.tdb&#39;</span><span class="p">))</span>  
+  <span class="k">end</span>  
+  
+<span class="k">end</span>  
+  
+<span class="no">Rack</span><span class="o">::</span><span class="no">Handler</span><span class="o">::</span><span class="no">Mongrel</span><span class="o">.</span><span class="n">run</span> <span class="n">rackApp</span><span class="p">,</span> <span class="ss">:Port</span> <span class="o">=&gt;</span> <span class="mi">9292</span>
+</code></pre>
+</div>
 </div>
 
 <script type="text/javascript">

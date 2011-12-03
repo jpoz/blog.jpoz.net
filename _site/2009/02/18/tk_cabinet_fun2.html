@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/pozdena.css" type="text/css" />
 
+  <link rel="stylesheet" href="/css/syntax.css">
 	<script src="js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 <body>
@@ -109,7 +110,102 @@
 	</tr>
 </table>
 <p>Code used for beachmarking:</p>
-<p>Liquid error: undefined method `join&#8217; for #<String:0x007f92d40f27b0></p>
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>  
+<span class="nb">require</span> <span class="s1">&#39;fastercsv&#39;</span>  
+  
+<span class="nb">require</span> <span class="s2">&quot;tokyocabinet&quot;</span>  
+<span class="nb">require</span> <span class="s1">&#39;rufus/tokyo&#39;</span>  
+<span class="nb">require</span> <span class="s1">&#39;dm-core&#39;</span>  
+  
+<span class="nb">require</span> <span class="s1">&#39;benchmark&#39;</span>  
+  
+<span class="kp">include</span> <span class="no">TokyoCabinet</span>  
+  
+<span class="c1"># setup for btree  </span>
+<span class="sb">`rm btree.bdb`</span>  
+<span class="n">bdb</span> <span class="o">=</span> <span class="no">BDB</span><span class="o">::</span><span class="kp">new</span>  
+<span class="n">bdb</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;btree.bdb&quot;</span><span class="p">,</span> <span class="no">BDB</span><span class="o">::</span><span class="no">OWRITER</span> <span class="o">|</span> <span class="no">BDB</span><span class="o">::</span><span class="no">OCREAT</span><span class="p">)</span>  
+  
+<span class="c1"># setup for hash  </span>
+<span class="sb">`rm hash.tdb`</span>  
+<span class="n">t</span> <span class="o">=</span> <span class="no">Rufus</span><span class="o">::</span><span class="no">Tokyo</span><span class="o">::</span><span class="no">Table</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;hash.tdb&#39;</span><span class="p">)</span>  
+  
+<span class="c1"># setup for DataMapper  </span>
+  
+<span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="s1">&#39;postgres://localhost/dm_core_test&#39;</span><span class="p">)</span>  
+  
+<span class="k">class</span> <span class="nc">Cell</span>  
+  <span class="kp">include</span> <span class="no">DataMapper</span><span class="o">::</span><span class="no">Resource</span>  
+  
+  <span class="n">property</span> <span class="ss">:id</span><span class="p">,</span>         <span class="no">Serial</span>  
+  <span class="n">property</span> <span class="ss">:x_cord</span><span class="p">,</span>     <span class="nb">Integer</span>  
+  <span class="n">property</span> <span class="ss">:y_cord</span><span class="p">,</span>     <span class="nb">Integer</span>  
+  <span class="n">property</span> <span class="ss">:value</span><span class="p">,</span>      <span class="nb">String</span>  
+<span class="k">end</span>  
+  
+<span class="no">Cell</span><span class="o">.</span><span class="n">auto_migrate!</span>  
+  
+<span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>  
+<span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>  
+  
+<span class="no">Benchmark</span><span class="o">.</span><span class="n">bm</span> <span class="k">do</span> <span class="o">|</span><span class="n">bench</span><span class="o">|</span>  
+  <span class="n">bench</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&quot;Tokyo: B-tree&quot;</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="no">FasterCSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="s2">&quot;big.csv&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>  
+      <span class="n">y</span> <span class="o">+=</span> <span class="mi">1</span>  
+      <span class="n">row</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cell</span><span class="o">|</span>  
+        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>  
+        <span class="n">bdb</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">,</span><span class="si">#{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">cell</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  
+      <span class="k">end</span>  
+      <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>  
+    <span class="k">end</span>  
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>  
+  <span class="p">}</span>  
+  <span class="n">bench</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&quot;Tokyo: Rufus&quot;</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="no">FasterCSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="s2">&quot;big.csv&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>  
+      <span class="n">y</span> <span class="o">+=</span> <span class="mi">1</span>  
+      <span class="n">row</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cell</span><span class="o">|</span>  
+        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>  
+        <span class="n">t</span><span class="o">[</span><span class="n">cell</span><span class="o">.</span><span class="n">to_s</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;x&#39;</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">to_s</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="o">.</span><span class="n">to_s</span> <span class="p">}</span>  
+      <span class="k">end</span>  
+      <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>  
+    <span class="k">end</span>  
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>  
+  <span class="p">}</span>  
+  <span class="n">bench</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&quot;DataMapper: Postgres&quot;</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="no">FasterCSV</span><span class="o">.</span><span class="n">foreach</span><span class="p">(</span><span class="s2">&quot;big.csv&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>  
+      <span class="n">y</span> <span class="o">+=</span> <span class="mi">1</span>  
+      <span class="n">row</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cell</span><span class="o">|</span>  
+        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>  
+        <span class="no">Cell</span><span class="o">.</span><span class="n">create</span><span class="p">(</span> <span class="ss">:x_cord</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="ss">:y_cord</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="p">,</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="n">cell</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>  
+      <span class="k">end</span>  
+      <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>  
+    <span class="k">end</span>  
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>  
+  <span class="p">}</span>  
+<span class="k">end</span>  
+  
+<span class="no">Benchmark</span><span class="o">.</span><span class="n">bm</span> <span class="k">do</span> <span class="o">|</span><span class="n">bench</span><span class="o">|</span>  
+  <span class="n">bench</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&quot;Tokyo: B-tree&quot;</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="mi">100</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>  
+      <span class="n">bdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">,</span><span class="si">#{</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  
+    <span class="k">end</span>  
+  <span class="p">}</span>  
+  <span class="n">bench</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&quot;Tokyo: Rufus&quot;</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="mi">100</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>  
+      <span class="n">t</span><span class="o">.</span><span class="n">query</span> <span class="p">{</span> <span class="o">|</span><span class="n">q</span><span class="o">|</span>  
+          <span class="n">q</span><span class="o">.</span><span class="n">add</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="ss">:equals</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span>  
+          <span class="n">q</span><span class="o">.</span><span class="n">add</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="ss">:equals</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span>  
+      <span class="p">}</span>  
+    <span class="k">end</span>  
+  <span class="p">}</span>  
+  <span class="n">bench</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="s2">&quot;DataMapper: Postgres&quot;</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="mi">100</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>  
+      <span class="no">Cell</span><span class="o">.</span><span class="n">first</span><span class="p">(</span><span class="ss">:x_cord</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="ss">:y_cord</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">value</span>  
+    <span class="k">end</span>  
+  <span class="p">}</span>  
+<span class="k">end</span>
+</code></pre>
+</div>
 </div>
 
 <script type="text/javascript">
