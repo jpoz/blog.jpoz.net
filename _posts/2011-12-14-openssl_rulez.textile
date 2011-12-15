@@ -3,7 +3,7 @@ layout: post
 title: Ciphers in Ruby rulez (not a good thing)
 ---
 
-Ciphers can be tricky to work with. Even tricker if you're trying to get two seperate system's ciphers to work together. Ruby gives you an extra hurtle to get over by setting it's IV (initialization vector) to "OpenSSL for Ruby rulez!" by default.
+Ciphers can be tricky to work with. Even tricker if you're trying to get two seperate system's ciphers to work together. Ruby gives you an extra hurdle to get over by setting it's IV (initialization vector) to "OpenSSL for Ruby rulez!" by default.
 
 Stream ciphers start with an initial value or initialization vector to start their cipher rounds. To remain secure the IV must be as *random* as possible.
 
@@ -27,7 +27,20 @@ else{
 
 Yup that's hardcoded in there.
 
-So word to the wise: Always make sure you're setting your IV when using encryption in Ruby!
+So word to the wise: Always make sure you're setting your IV when using encryption in Ruby! Here an example of how to set the IV manually:
+
+{% highlight ruby %}
+
+@cipher = OpenSSL::Cipher::Cipher.new('aes-256-cbc')
+@cipher.encrypt
+
+@cipher.key = @cipher.random_key
+@cipher.iv  = @cipher.random_iv # bye bye "OpenSSL for Ruby rulez!"
+
+@cipher.update("I'm gonna be encrypted")
+output = @cipher.final
+
+{% endhighlight %}
 
 h3. Where did all this come from?
 

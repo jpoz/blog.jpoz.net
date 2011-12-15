@@ -4,7 +4,7 @@
  <title>Jpoz - Blog</title>
  <link href="http://blog.jpoz.com/atom.xml" rel="self"/>
  <link href="http://blog.jpoz.com/"/>
- <updated>2011-12-14T23:50:12-08:00</updated>
+ <updated>2011-12-14T23:58:22-08:00</updated>
  <id>http://blog.jpoz.com/</id>
  <author>
    <name>JPoz</name>
@@ -17,7 +17,7 @@
    <link href="http://blog.jpoz.net/2011/12/14/openssl_rulez.html"/>
    <updated>2011-12-14T00:00:00-08:00</updated>
    <id>http://blog.jpoz.net/2011/12/14/openssl_rulez</id>
-   <content type="html">&lt;p&gt;Ciphers can be tricky to work with. Even tricker if you&amp;#8217;re trying to get two seperate system&amp;#8217;s ciphers to work together. Ruby gives you an extra hurtle to get over by setting it&amp;#8217;s IV (initialization vector) to &amp;#8220;OpenSSL for Ruby rulez!&amp;#8221; by default.&lt;/p&gt;
+   <content type="html">&lt;p&gt;Ciphers can be tricky to work with. Even tricker if you&amp;#8217;re trying to get two seperate system&amp;#8217;s ciphers to work together. Ruby gives you an extra hurdle to get over by setting it&amp;#8217;s IV (initialization vector) to &amp;#8220;OpenSSL for Ruby rulez!&amp;#8221; by default.&lt;/p&gt;
 &lt;p&gt;Stream ciphers start with an initial value or initialization vector to start their cipher rounds. To remain secure the IV must be as &lt;strong&gt;random&lt;/strong&gt; as possible.&lt;/p&gt;
 &lt;p&gt;Ruby&amp;#8217;s implementation of OpenSSL ciphers &amp;#8220;Rulez&amp;#8221; by default. Take a look at the cipher code in the current version of Ruby:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;c&quot;&gt;&lt;span class=&quot;n&quot;&gt;StringValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -34,7 +34,17 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Yup that&amp;#8217;s hardcoded in there.&lt;/p&gt;
-&lt;p&gt;So word to the wise: Always make sure you&amp;#8217;re setting your IV when using encryption in Ruby!&lt;/p&gt;
+&lt;p&gt;So word to the wise: Always make sure you&amp;#8217;re setting your IV when using encryption in Ruby! Here an example of how to set the IV manually:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;vi&quot;&gt;@cipher&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;OpenSSL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;aes-256-cbc&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;vi&quot;&gt;@cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encrypt&lt;/span&gt;
+
+&lt;span class=&quot;vi&quot;&gt;@cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_key&lt;/span&gt;
+&lt;span class=&quot;vi&quot;&gt;@cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iv&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_iv&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# bye bye &amp;quot;OpenSSL for Ruby rulez!&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;vi&quot;&gt;@cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;I&amp;#39;m gonna be encrypted&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@cipher&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;h3&gt;Where did all this come from?&lt;/h3&gt;
 &lt;p&gt;With the power of git we can see where all this came from. If we roll all the way back to 2003 we find a &lt;a href=&quot;https://github.com/ruby/ruby/blob/231247c010acba191b78ed2d1310c935e63ad919/ext/openssl/ossl_cipher.c#L132&quot;&gt;&lt;span class=&quot;caps&quot;&gt;TODO&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</content>
  </entry>

@@ -44,7 +44,7 @@
   Ciphers in Ruby rulez (not a good thing)
 </h1>
 <div id="post">
-  <p>Ciphers can be tricky to work with. Even tricker if you&#8217;re trying to get two seperate system&#8217;s ciphers to work together. Ruby gives you an extra hurtle to get over by setting it&#8217;s IV (initialization vector) to &#8220;OpenSSL for Ruby rulez!&#8221; by default.</p>
+  <p>Ciphers can be tricky to work with. Even tricker if you&#8217;re trying to get two seperate system&#8217;s ciphers to work together. Ruby gives you an extra hurdle to get over by setting it&#8217;s IV (initialization vector) to &#8220;OpenSSL for Ruby rulez!&#8221; by default.</p>
 <p>Stream ciphers start with an initial value or initialization vector to start their cipher rounds. To remain secure the IV must be as <strong>random</strong> as possible.</p>
 <p>Ruby&#8217;s implementation of OpenSSL ciphers &#8220;Rulez&#8221; by default. Take a look at the cipher code in the current version of Ruby:</p>
 <div class="highlight"><pre><code class="c"><span class="n">StringValue</span><span class="p">(</span><span class="n">pass</span><span class="p">);</span>
@@ -61,7 +61,17 @@
 </code></pre>
 </div>
 <p>Yup that&#8217;s hardcoded in there.</p>
-<p>So word to the wise: Always make sure you&#8217;re setting your IV when using encryption in Ruby!</p>
+<p>So word to the wise: Always make sure you&#8217;re setting your IV when using encryption in Ruby! Here an example of how to set the IV manually:</p>
+<div class="highlight"><pre><code class="ruby"><span class="vi">@cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">Cipher</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;aes-256-cbc&#39;</span><span class="p">)</span>
+<span class="vi">@cipher</span><span class="o">.</span><span class="n">encrypt</span>
+
+<span class="vi">@cipher</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="vi">@cipher</span><span class="o">.</span><span class="n">random_key</span>
+<span class="vi">@cipher</span><span class="o">.</span><span class="n">iv</span>  <span class="o">=</span> <span class="vi">@cipher</span><span class="o">.</span><span class="n">random_iv</span> <span class="c1"># bye bye &quot;OpenSSL for Ruby rulez!&quot;</span>
+
+<span class="vi">@cipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;I&#39;m gonna be encrypted&quot;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="vi">@cipher</span><span class="o">.</span><span class="n">final</span>
+</code></pre>
+</div>
 <h3>Where did all this come from?</h3>
 <p>With the power of git we can see where all this came from. If we roll all the way back to 2003 we find a <a href="https://github.com/ruby/ruby/blob/231247c010acba191b78ed2d1310c935e63ad919/ext/openssl/ossl_cipher.c#L132"><span class="caps">TODO</span></a></p>
 </div>
